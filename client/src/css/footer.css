@@ -1,0 +1,80 @@
+.containerStyles {
+    box-sizing: content-box; 
+    margin-top: -10px;
+    padding: 100px 30px;
+    text-align: center;
+    overflow: hidden;
+    background-image: -webkit-linear-gradient(
+        from #0066CD 50%,
+        to #03346E 90%,
+    );
+    background-image: linear-gradient(
+        to bottom,
+        #0066CD 50%,
+        #03346e 90%
+    );
+    background-image: -o-linear-gradient(
+        from #0066CD 50%,
+        to #03346E 90%,
+    );
+    background-image: -ms-linear-gradient(
+        from #0066CD 50%,
+        to #03346E 90%,
+    );
+    background-image: -moz-linear-gradient(
+        from #0066CD 50%,
+        to #03346E 90%,
+    );
+}
+
+.copyright {
+    width: 10px;
+    height: 10px;
+    margin: 0;
+}
+
+.linkStyle {
+    color: rgb(121, 121, 121);
+    text-decoration: none;
+    transition: 0.75s;
+}
+
+.linkStyle:hover {
+    color: rgb(65, 201, 226);
+}
+
+.containerTop {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-bottom: 50px;
+
+    background: transparent;
+    overflow: hidden;
+    margin-top: 3%;
+}
+
+/* Одна бесшовная волна */
+
+.wave {
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    width: 200%;  
+    height: 100px;
+    background-image: url("data:image/svg+xml;utf8,<svg width='1600' height='100' viewBox='0 0 1600 100' xmlns='http://www.w3.org/2000/svg'><path fill='%230066CD' d='M0 50 Q400 20 800 50 T1600 50 V100 H0 Z'/></svg>");
+    background-repeat: repeat-x;
+    background-size: 1600px 100px;
+    animation: waveMove 2s linear infinite;
+}
+
+/* Анимация сдвига по X */
+@keyframes waveMove {
+    0% {
+        background-position-x: 0;
+    }
+    100% {
+     background-position-x: 1599px;
+    }
+}
+

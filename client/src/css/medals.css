@@ -1,0 +1,14 @@
+.medals {
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+}
+
+.medal1, .medal2, .medal3 {
+    width: 150px;
+    height: 210px;
+    margin: 1.5% 0;
+    padding: 0;
+}
+

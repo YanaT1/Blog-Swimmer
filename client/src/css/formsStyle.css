@@ -1,0 +1,163 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.inputStyle, .formSelect {
+    font-family: 'Merriweather', serif;
+    border-radius: 15px;
+    border: solid #008DDA 1px;
+    color: rgb(2, 21, 38, 0.75);
+    background-color: rgb(167, 230, 255, 0.20); 
+    font-size: 10px;
+    padding: 7px 15px;
+    margin: 3% 0;
+    width: 100%;
+}
+
+.formSelect {
+    width: 50%;
+    color: rgb(2, 21, 38, 0.75);
+    font-size: 10px;
+    padding: 7px 15px;
+}
+.inputStyle:focus {
+    outline: none;
+    border: 1px solid #008dda;
+    border-radius: 15px;
+    box-shadow: 0 0 5px rgb(2, 21, 38, 0.2);
+}
+
+.formSelect:focus {
+    outline: none;
+    border: 1px solid #008dda;
+    border-radius: 15px;
+    box-shadow: 0 0 5px rgb(2, 21, 38, 0.2);
+    width: 50%;
+    color: rgb(2, 21, 38, 0.75);
+    font-size: 10px;
+}
+
+.formStyle::after {
+    content: 'v';
+    font-size: 15px;
+    position: absolute;
+    color: blue;
+    padding: 7px 25px;
+    z-index: -1;
+    text-align: center;
+}
+
+
+.pStyles {
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 2%;
+    color: rgb(3, 51, 109, 0.60);
+    text-align: start;
+}
+
+.buttonStyle {
+    -webkit-border-radius: 15;
+    -moz-border-radius: 15;
+    border-radius: 15px;
+    border: solid #008DDA 1px;
+    font-family: 'Merriweather', serif;
+    color: rgb(0, 141, 218);
+    font-size: 12px;
+    background-color: rgb(167, 230, 255, 0.20);
+    padding: 7px 20px 7px 20px;
+    text-decoration: none;
+    width: 90px;
+    height: 30px;
+}
+  
+.buttonStyle:hover {
+    background-color: #008DDA;
+    color: white;
+}
+
+
+.feedbackStyle, .errorStyle, .instructions  {
+    font-family: 'Merriweather', serif;
+    font-size: 8;
+    /* margin-left: 3%; */
+    color: red;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+.valid {
+    color: rgb(13, 158, 13);
+    margin-left: 3%;
+}
+
+.styleAgree {
+    font-size: 10px;
+    color: rgb(2, 21, 38, 0.75);
+    margin: 2%;
+}
+
+.loaderStyle {
+    background-color: rgb(167, 230, 255, 0.50); 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+
+
+/* Стилизация "кнопки-глаза" возле инпута пароля */
+
+.passwordWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.passwordInput {
+  width: 100%;
+  padding-right: 40px; 
+}
+
+.eyeButton {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(0, 141, 218);
+  font-size: 1.2rem;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  transition: color 0.2s ease;
+}
+
+.eyeButton:hover, .eyeButton:focus {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: rgb(0, 141, 218, 0.5);
+}
+
+.eyeButton:active {
+  color: rgba(0, 141, 218, 0.5);
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}

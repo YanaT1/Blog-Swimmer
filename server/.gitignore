@@ -1,0 +1,13 @@
+node_modules/
+postgres-data/
+build/
+dist/
+
+logs/
+*.log
+
+test-report/
+coverage/
+
+docker-data/
+*.tar

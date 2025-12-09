@@ -1,0 +1,41 @@
+/* Стили по умолчанию для десктопов */
+.title, .titleHome, .titleChart {
+    color:rgb(3, 51, 109, 0.6);
+    margin-top: 10%;
+    text-align: center;
+}
+
+.containerMargin, .containerMarginTable {
+    margin: 5% 8%;  
+}
+
+
+/* Стили для мобильных устройств */
+@media (max-width: 768px) {
+    .title {
+        margin-top: 30%;
+    }
+    .titleHome {
+        margin-top: 15%;
+    }
+    .titleChart {
+        margin-top: 20%;
+    }
+
+    .containerMargin {
+        margin: 10% 4%;
+    }
+    .containerMarginTable {
+        margin: 8% 0.5%;
+    }
+}
+
+/* Стили для планшетов */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .title {
+        margin-top: 15%;
+    }
+    /* .containerMargin {
+        margin: 5% 8%; 
+    } */
+}

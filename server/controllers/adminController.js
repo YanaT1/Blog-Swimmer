@@ -1,0 +1,15 @@
+const {User} = require('../models/models');
+const ApiError = require('../error/ApiError');
+
+class AdminController {
+    async adminDashboard(req, res, next){
+        try {
+            const users = await userService.getUsers();
+            return res.json({message: `Welcome to admin panel`});
+        } catch (e) {
+            next(ApiError.badRequest(e.message));
+        }
+    }
+}
+
+module.exports = new AdminController();

@@ -1,0 +1,53 @@
+html, body, #root {
+    font-family: "Merriweather", serif;
+    font-style: normal;
+    color: #000;
+    cursor: pointer; 
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.layout-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.layout-content {
+    flex: 1;
+}
+
+h1 {
+    font-weight: bold 900;
+    font-size: 44px;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: bold 900;
+}
+
+h3 {
+    font-weight: bold 900;
+    font-size: 20px;
+}
+
+h4, h5 {
+    font-weight: bold 900;
+    font-size: 16px;
+}
+
+p {
+    font-size: 12px;
+    line-height: 1.5;
+    margin: auto;
+}

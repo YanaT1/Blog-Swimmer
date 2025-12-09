@@ -1,0 +1,98 @@
+header {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    background-color: rgba(0, 141, 218, 0.2);
+    padding: 0;
+    
+    .mainImg {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+        object-position: center center;
+        z-index: -1;
+    }
+   
+    .containerText {
+        position: absolute;
+        width: 50%;
+        margin-left: 10%;
+        margin-right: 10%;
+        box-sizing: content-box; 
+        bottom: 15%;
+        color: white;
+        
+    }
+
+     .styleH4 {
+        margin-bottom: 2%;
+    }
+
+    .styleH5 {
+        margin-top: 2%;
+    }
+
+    .pStyle {
+        margin: 6% 0 2% 0;
+        font-size: 10px;
+    }
+
+
+    .buttonGroup {
+        display: flex;
+        gap: 1%;
+        margin-top: 10px;
+    }
+
+    .buttonStyle1, .buttonStyle2 {
+        border-radius: 15px;
+        font-family: 'Merriweather', serif;
+        font-size: 10px;
+        width: 60px;
+        height: 30px;
+        margin: 1%;
+        text-decoration: none;
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        box-sizing: border-box;
+        border: 1.5px solid transparent;
+        transition: all 0.3s ease;
+        padding: 0;
+    }
+
+    .buttonStyle1 {
+        color: white;
+        background-color: rgba(0, 141, 218, 0.5);
+    }
+
+    .buttonStyle1:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+        color: #03346E;
+    }
+
+    .buttonStyle2 {
+        background-color: rgba(255, 255, 255, 0.5);
+        color: #03346E;
+    }
+
+    .buttonStyle2:hover {
+        color: white;
+        background-color: rgba(0, 141, 218, 0.5);
+    }
+}
+
+
+
+
+
+
+
+

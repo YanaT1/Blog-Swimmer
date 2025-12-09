@@ -1,0 +1,58 @@
+.containerNavbarHome {
+    background-color: rgba(3, 52, 110, 0.5);
+    width: 100%;
+    position: fixed;
+    top: 0; 
+    /*position: absolute; */
+    z-index: 3;
+}
+
+.containerNavbar {
+    background-color: rgb(3, 52, 110);
+    width: 100%;
+    position: fixed;
+    top: 0; 
+}
+
+.burgerStyle {
+    color: rgb(65, 201, 226);
+    margin-right: 10%;
+}
+
+.navbarBrand {
+    font-family: 'Merriweather';
+    color: white; 
+    font-size: 22px;
+    transition: 0.75s;
+    margin-left: 10%;
+    margin-right: -5%; 
+}
+
+.navbarBrand:hover {
+    color: rgb(213, 240, 251);
+}
+
+.navbar {
+    font-family: 'Merriweather';
+    color: rgb(213, 240, 251);
+    font-size: 14px;
+    transition: 0.75s;
+}
+
+.navbar:hover {
+    color: white;
+}
+
+.navbar:focus {
+    color: white;
+}
+
+.containerButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10%;
+}
+
+
+
+

@@ -1,0 +1,62 @@
+.containerDrop {
+   display: flex; 
+   flex-direction: column;
+   align-items: center; 
+   justify-content: center;
+   margin-bottom: 15px;
+ }
+
+.bgDrops {
+   height: 150px;
+   width: 150px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.drops {
+   height: 145px;
+   width: 145px;
+   position: relative;
+   overflow: hidden;
+   margin-left: 2.5%;
+   margin-top: 1.5%;
+   margin-right: 0;
+   background-color: rgb(0, 141, 218, 0.20);
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   .bgDrop {
+      position: absolute;
+      margin-left: 0;
+      margin-right: 0;
+      width: 103%;
+      height: 103%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 60%;
+   }
+   .drop {
+      position: absolute;
+      margin-left: 2%;
+      right: 0;
+      width: 132px;
+      height: 132px;
+      object-fit: cover;
+      z-index: -1;
+      margin: 3% 1.5%;
+   }
+}
+
+.styleText {
+   font-size: 14px;
+   color: white;
+   margin-top: 10%;
+}
+
+.styleSpan {
+   font-size: 16px;
+   color: white;
+   margin-bottom: 8%;
+}

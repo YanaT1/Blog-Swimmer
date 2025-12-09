@@ -1,0 +1,24 @@
+.chart-wrapper {
+    max-width: 100%;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.chart-wrapper canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .chart-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .chart-wrapper canvas {
+        width: 100% !important;
+        max-width: 100%;
+    }
+}
