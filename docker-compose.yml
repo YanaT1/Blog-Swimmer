@@ -27,9 +27,7 @@ services:
       context: ./client
     restart: always
     depends_on:
-      - backend
-    ports:
-      - "3000:80"               
+      - backend               
     networks:
       - appnet
 
