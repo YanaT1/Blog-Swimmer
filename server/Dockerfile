@@ -1,9 +1,9 @@
 FROM node:18-alpine
-WORKDIR /back/app
+WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
 
-EXPOSE 5000
 ENV NODE_ENV=production
+EXPOSE 5000
 CMD ["node", "server.js"]

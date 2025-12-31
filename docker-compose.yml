@@ -30,22 +30,8 @@ services:
     restart: always
     depends_on:
       - backend
-    expose:
-      - "3000"               
-    networks:
-      - appnet
-
-  nginx-proxy:
-    image: nginx:stable-alpine
-    restart: always
-    volumes:
-      - ./docker/nginx/proxy.conf:/etc/nginx/conf.d/default.conf:ro
     ports:
-      - "80:80"
-      - "443:443"
-    depends_on:
-      - frontend
-      - backend
+      - "80:80"               
     networks:
       - appnet
 
