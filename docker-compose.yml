@@ -22,15 +22,6 @@ services:
     networks:
       - appnet
 
-  # frontend:
-  #   build:
-  #     context: ./client
-  #   restart: always
-  #   depends_on:
-  #     - backend               
-  #   networks:
-  #     - appnet
-
 volumes:
   postgres-data:
 
