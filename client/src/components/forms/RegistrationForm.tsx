@@ -176,7 +176,7 @@ const RegistrationForm = observer( (): JSX.Element => {
                                         value={role}
                                         onChange={e => {
                                             const value = e.target.value as Role;
-                                            if (value === Role.User || value === Role.Admin) {
+                                            if (value === Role.Admin || value === Role.User) {
                                                 setRole(value);
                                             }
                                         }}
@@ -190,7 +190,7 @@ const RegistrationForm = observer( (): JSX.Element => {
                                     <option value='admin'>ADMIN</option>
                                 </select>
                                 <p id='roleNote' className={roleFocus &&!validRole? 'instructions' : 'offscreen'}>
-                                    Please select USER. Only Admin can change your role on administrative.
+                                    Please select ADMIN. Only Admin can change your role on administrative.
                                 </p>
                                     
                                 <Row className='d-flex justify-content-between mt-3 pl-3 pr-3'>
