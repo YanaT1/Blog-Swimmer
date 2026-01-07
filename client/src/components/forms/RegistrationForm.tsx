@@ -45,7 +45,7 @@ const RegistrationForm = observer( (): JSX.Element => {
     const [validMatchPwd, setValidMatchPwd] = useState<boolean>(false);
     const [matchPwdFocus, setMatchPwdFocus] = useState<boolean>(false);
 
-    const [role, setRole] = useState<Role>(Role.User);
+    const [role, setRole] = useState<Role>(Role.Admin);
     const [validRole, setValidRole] = useState<boolean>(false);
     const [roleFocus, setRoleFocus] = useState<boolean>(false);
 
@@ -63,14 +63,14 @@ const RegistrationForm = observer( (): JSX.Element => {
     }, [password, matchPwd]);
 
     useEffect(() => {
-        setValidRole(role === Role.User)
+        setValidRole(role === Role.Admin)
     }, [role]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const v1 = EMAIL_REGEX.test(email);
         const v2 = PWD_REGEX.test(password);
-        const v3 = role === Role.User;
+        const v3 = role === Role.Admin;
         if (!v1 || !v2 || !v3) {
             setErrorMessage('Please fill in valid data');
             return; 

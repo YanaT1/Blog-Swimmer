@@ -43,7 +43,7 @@ class UserService {
             throw ApiError.badRequest('Incorrect login or password');
         }
         const roles = await User.findOne({role: ['admin', 'user']});
-        const userDto = new UserDto(user);
+        const userDto = new UserDto(admin);
         const tokens = tokenService.generateTokens({...userDto});
 
         await tokenService.saveToken(userDto.id, tokens.refreshToken);
