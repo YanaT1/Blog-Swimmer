@@ -6,7 +6,7 @@ const User = sequelize.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     email: {type: DataTypes.STRING, unique: true, required: true},
     password: {type: DataTypes.STRING, required: true},
-    role: {type: DataTypes.ENUM('user', 'admin'), defaultValue: 'user'},
+    role: {type: DataTypes.ENUM('user', 'admin'), defaultValue: 'admin'},
     isActivated: {type: DataTypes.BOOLEAN, default: false},
     activationLink: {type: DataTypes.STRING},
     resetPasswordToken: {type: DataTypes.STRING, allowNull: true},
