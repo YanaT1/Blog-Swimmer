@@ -29,8 +29,6 @@ services:
       - "80:80" 
     depends_on:
       - backend
-    networks:
-      - appnet
 
   volumes:
     postgres-data:
