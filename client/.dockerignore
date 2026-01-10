@@ -4,5 +4,4 @@ build
 Dockerfile
 .git
 .gitignore
-.env
 *.log
