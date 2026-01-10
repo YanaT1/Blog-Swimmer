@@ -9,7 +9,7 @@ interface RetryAxiosRequestConfig extends AxiosRequestConfig {
 
 
 const $host = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: "https://ivantryputen.com/api",
   withCredentials: true,
 });
 
