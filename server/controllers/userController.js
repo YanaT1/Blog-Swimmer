@@ -77,7 +77,7 @@ class UserController {
 
     async getUsers(req, res, next){
         try{
-            const users = await userService.getUsers(id);
+            const users = await userService.getUsers();
             const userDto = {
                 email: user.email,
                 id: user.id,
