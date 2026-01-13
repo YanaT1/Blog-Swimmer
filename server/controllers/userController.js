@@ -77,8 +77,14 @@ class UserController {
 
     async getUsers(req, res, next){
         try{
-            const users = await userService.getUsers();
-            return res.json(users);
+            const users = await userService.getUsers(id);
+            const userDto = {
+                email: user.email,
+                id: user.id,
+                role: user.role,
+                isActivated: user.isActivated
+            }
+            return res.json(userDto);
         } catch(e) {
             next(ApiError.badRequest(e.message));
         }
