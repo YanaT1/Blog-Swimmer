@@ -78,13 +78,13 @@ class UserController {
     async getUsers(req, res, next){
         try{
             const users = await userService.getUsers();
-            const userDto = users.map(user => {
+            const userDto = users.map(user => ({
                 email: user.email,
                 id: user.id,
                 role: user.role,
                 isActivated: user.isActivated
-            }
-            return res.json(userDto));
+            }))
+            return res.json(userDto);
         } catch(e) {
             next(ApiError.badRequest(e.message));
         }
