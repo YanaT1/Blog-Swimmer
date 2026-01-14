@@ -67,8 +67,9 @@ class UserController {
 
     async check(req, res, next) {
         try {
-            const token = await userService.check();
-            return res.json(token);
+            const userData = await userService.check(req.user.id);
+            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'none'});
+            return res.json(userData);
         } catch(e) {
             next(ApiError.badRequest(e.message));
         }

@@ -25,7 +25,7 @@ class UserService {
     }
 
     async activate(activationLink) {
-        const user = await User.findOne({activationLink});
+        const user = await User.findOne(where: {activationLink});
         if (!user) {
             throw ApiError.badRequest('Invalid activation link');
         }
@@ -43,7 +43,7 @@ class UserService {
             throw ApiError.badRequest('Incorrect login or password');
         }
         const roles = await User.findOne({role: ['admin', 'user']});
-        const userDto = new UserDto(admin);
+        const userDto = new UserDto(user);
         const tokens = tokenService.generateTokens({...userDto});
 
         await tokenService.saveToken(userDto.id, tokens.refreshToken);
@@ -64,7 +64,7 @@ class UserService {
         if (!userData || !tokenFromDb) {
             throw ApiError.unauthorized();
         }
-        const user = await User.findById(userData.id);
+        const user = await User.findByPk(userData.id);
         const userDto = new UserDto(user);
         const tokens = tokenService.generateTokens({...userDto});
 
@@ -72,9 +72,15 @@ class UserService {
         return {...tokens, user: userDto}
     }
 
-    async check(){
-        const token = await tokenService.generateTokens({...userDto});
-        return {...token};
+    async check(userId){
+        const user = await User.findByPk(userId);
+        if (!user) {
+            throw ApiError.unauthorizedError('User not found');
+        }
+        const userDto = new UserDto(user);
+        const tokens = tokenService.generateTokens({...userDto});
+        await tokenService.saveToken(userDto.id, tokens.refreshToken);
+        return {...tokens, user: userDto};
     }
 
     async getUsers(){
