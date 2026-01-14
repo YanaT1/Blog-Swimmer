@@ -37,6 +37,18 @@ class MailService {
             from: '"Ivan Tryputen" <noreply@ivantryputen.com>',
             to,
             subject: 'Password Reset Request',
+            text: `Hello,
+
+                You (or someone using your email) requested a password reset for your account.
+                
+                Please click the following link to reset your password:
+                ${link}
+
+                If you did not request this, you can safely ignore this email.
+                
+                Best regards,
+                Ivan Tryputen
+                ivantryputen.com`,
             html: `
                 <div>
                     <h1>Password Reset</h1>
