@@ -13,7 +13,7 @@ class BrevoService {
     try {
       const data = await this.apiInstance.sendTransacEmail({
         to: [{ email: toEmail, name: toName }],
-        sender: { email: 'plswimmer78@gmail.com', name: 'Ivan' },
+        sender: { email: 'noreply@ivantryputen.com', name: 'Ivan Tryputen'},
         subject,
         htmlContent,
       });

@@ -35,7 +35,8 @@ class MailService {
 
     async sendResetPasswordMail(to, link) {
         await this.transporter.sendMail({
-            from: 'plswimmer78@gmail.com',
+            from email: 'noreply@ivantryputen.com',
+            from name: 'Ivan Tryputen',
             to,
             subject: 'Password Reset Request',
             html: `
