@@ -1,4 +1,5 @@
 const {User} = require('../models/models');
+const userService = require('../service/user-service');
 const ApiError = require('../error/ApiError');
 
 class AdminController {

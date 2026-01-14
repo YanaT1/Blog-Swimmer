@@ -1,13 +1,18 @@
 const ApiError = require('../error/ApiError');
 
-
-
-const checkRole = (admin) => {
+const checkRole = (role) => {
     return (req, res, next) => {
-        if (req.user.role !== admin) {
-           return ApiError.unauthorizedError('Only admin')
+        try {
+            if (!req.user) {
+                return next(ApiError.unauthorizedError('User is not authorized'));
+            }
+            if (req.user.role !== role) {
+                return next(ApiError.forbidden('Access denied: ' + role + ' role required'));
+            }
+            next();
+        } catch (e) {
+            next(ApiError.unauthorizedError('Role verification error'));
         }
-        next();
     } 
 }
 

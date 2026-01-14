@@ -15,7 +15,7 @@ class UserController {
             }
             const {email, role, password} = req.body;
             const userData = await userService.registration(email, role, password);
-            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true});
+            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'none'});
             return res.json(userData);
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -26,7 +26,7 @@ class UserController {
         try {
             const {email, password} = req.body;
             const userData = await userService.login(email, password);
-            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true});
+            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'none'});
             return res.json(userData);
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -37,8 +37,7 @@ class UserController {
         try {
             const {refreshToken} = req.cookies;
             const token = await userService.logout(refreshToken)
-            res.clearCookie('refreshToken')
-            res.redirect('/');
+            res.clearCookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'none'})
             return res.json(token);
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -59,7 +58,7 @@ class UserController {
         try {
             const {refreshToken} = req.cookies;
             const userData = await userService.refresh(refreshToken)
-            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true});
+            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'none'});
             return res.json(userData);
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -93,12 +92,16 @@ class UserController {
     async delete(req, res, next){
         try{
             const id = req.params.id;
-            const userDelete = await User.destroy(
-                {where: {id:id}})
-            .then(() => {
-            res.redirect('/');
-            });
-        return res.json(userDelete);
+            await User.destroy({ where: { id: id } });
+            
+            const users = await userService.getUsers();
+            const usersDto = users.map(user => ({
+                email: user.email,
+                id: user.id,
+                role: user.role,
+                isActivated: user.isActivated
+            }));
+            return res.json(userDto);
         } catch (e) {
         next(ApiError.badRequest(e.message));
         }
