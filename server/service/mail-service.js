@@ -16,8 +16,7 @@ class MailService {
 
     async sendActivationMail(to, link) {
         await this.transporter.sendMail({
-            from email: 'noreply@ivantryputen.com',
-            from name: 'Ivan Tryputen',
+            from: '"Ivan Tryputen" <noreply@ivantryputen.com>',
             to,
             subject: 'Activate your account' + process.env.API_URL,
             text:'',
@@ -35,8 +34,7 @@ class MailService {
 
     async sendResetPasswordMail(to, link) {
         await this.transporter.sendMail({
-            from email: 'noreply@ivantryputen.com',
-            from name: 'Ivan Tryputen',
+            from: '"Ivan Tryputen" <noreply@ivantryputen.com>',
             to,
             subject: 'Password Reset Request',
             html: `
