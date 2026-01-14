@@ -23,7 +23,7 @@ app.use(cors({
 }));
 app.use(express.static(path.resolve(__dirname, 'client', 'static')));
 app.use(fileUpload({}));
-app.use('/', router);
+app.use('/api', router);
 app.use(errorHandler);
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));

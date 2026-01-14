@@ -56,6 +56,9 @@ class MailService {
                     <a href="${link}">${link}</a>
                     <br />
                     <p>If you did not request this, please ignore this email.</p>
+                    <p>Best regards,</p>
+                    <p>Ivan Tryputen</p>
+                    <a href="https://ivantryputen.com/">www.ivantryputen.com</a>
                 </div>
             `
         });
