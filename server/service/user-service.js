@@ -25,7 +25,7 @@ class UserService {
     }
 
     async activate(activationLink) {
-        const user = await User.findOne(where: {activationLink});
+        const user = await User.findOne({where: {activationLink}});
         if (!user) {
             throw ApiError.badRequest('Invalid activation link');
         }

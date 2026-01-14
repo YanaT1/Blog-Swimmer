@@ -37,7 +37,7 @@ class UserController {
         try {
             const {refreshToken} = req.cookies;
             const token = await userService.logout(refreshToken)
-            res.clearCookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'none'})
+            res.clearCookie('refreshToken', {httpOnly: true, secure: true, sameSite: 'none'})
             return res.json(token);
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -102,7 +102,7 @@ class UserController {
                 role: user.role,
                 isActivated: user.isActivated
             }));
-            return res.json(userDto);
+            return res.json(usersDto);
         } catch (e) {
         next(ApiError.badRequest(e.message));
         }
