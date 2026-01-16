@@ -31,20 +31,11 @@ const AdminResultsPanel = observer(() => {
     const itemsPerPage = 10; //шт на странице
     
 
-
-//     useEffect(() => {
-//        // if (years_results.availableYears.length === 0){
-//             years_results.fetchResults();
-//    // }
-//    }, 
-//     []);
-
-useEffect(() => {
-    // Логика: "Если данные еще не загружены (даже если там пусто), загрузи их один раз"
-    if (!years_results.isLoaded) {
-        years_results.fetchResults();
-    }
-}, [years_results.isLoaded]);
+    useEffect(() => {
+        if (!years_results.isLoaded) {
+            years_results.fetchResults();
+        }
+    }, [years_results.isLoaded]);
 
     const years = years_results.availableYears.slice().sort((a, b) => Number(b) - Number(a));
     const allResults = years_results.allResults;
