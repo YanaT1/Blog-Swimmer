@@ -70,7 +70,7 @@ const PersonalBests = observer ( (): JSX.Element => {
     
     return (
         <Container fluid className='text-center'>
-            <h2 style={{color: 'red'}}>Count: {personal_bests.length}</h2>
+            <h2 style={{color: 'red'}}>Count: {personal_bests.personalBests.length}</h2>
             <Row className='d-flex flex-wrap'>
             {personal_bests.personalBests.slice() 
               .sort((a, b) => parseTime(a.result) - parseTime(b.result))
