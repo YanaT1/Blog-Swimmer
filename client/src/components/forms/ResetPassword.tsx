@@ -54,19 +54,21 @@ const ResetPassword = observer(({token}: ResetPasswordProps) => {
             setMessageError('Invalid token');
             return;
         }
-        try {
-            const response = await AuthService.resetPassword(token, password);
-            if (response.data.success) {
-                setSuccess(response.data.message);
-                navigate('/login');
-            } else {
-                setMessageError('Error: ' + response.data.message);
-            }
-        } catch (error) {
-            console.error('Error resetting password:', error);
-            setMessageError('Error: Unable to reset password');
+
+        if (password !== matchPwd) {
+        setMessageError('Passwords do not match');
+        return;
         }
-    };
+
+        try {
+            const response = await AuthService.resetPassword(token, password, matchPwd);
+            if (response.status === 200) {
+                setSuccess('Password reset successfully!');
+                setTimeout(() => navigate('/login'), 3000);
+            } catch (error: any) {
+            setMessageError(error.response?.data?.message || 'Unable to reset password');
+            }
+        };
 
     return (
         <div className='backgroundSection' style={{margin: '5% 10%'}}>

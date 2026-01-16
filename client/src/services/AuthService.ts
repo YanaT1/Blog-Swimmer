@@ -25,13 +25,13 @@ class AuthService {
     }
 
     static async forgotPassword(email: string)
-    : Promise<AxiosResponse<AuthResponse>> {
+    : Promise<AxiosResponse<AuthResponse><{message: string}>> {
         return $host.post<AuthResponse>('/user/forgot-password', {email});
     }
 
-    static async resetPassword(token: string, password: string)
-    : Promise<AxiosResponse<AuthResponse>> {
-        return $host.post<AuthResponse>(`/user/reset-password/${token}`, {password});
+    static async resetPassword(token: string, password: string, confirmPassword: string)
+    : Promise<AxiosResponse<AuthResponse><{message: string}>> {
+        return $host.post<AuthResponse>(`/user/reset-password/${token}`, {password, confirmPassword});
     }
 }
 

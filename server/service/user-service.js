@@ -97,7 +97,7 @@ class UserService {
         user.resetPasswordToken = resetToken;
         user.resetPasswordExpires = Date.now() + 3600000; 
         await user.save();
-        const resetLink = `${process.env.API_URL}/user/reset-password/${resetToken}`;
+        const resetLink = `${process.env.CLIENT_URL}/user/reset-password/${resetToken}`;
         await mailService.sendResetPasswordMail(email, resetLink);
         return {message: 'Check your email for the reset link'};
     }
