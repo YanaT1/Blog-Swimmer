@@ -19,8 +19,8 @@ app.use(cookieParser());
 app.use(bodyParser());
 app.use(cors({
     credentials: true,
-    origin: process.env.CLIENT_URL, 
-            'https://www.ivantryputen.com'
+    origin: [process.env.CLIENT_URL, 
+            'https://www.ivantryputen.com']
 }));
 app.use(express.static(path.resolve(__dirname, 'client', 'static')));
 app.use(fileUpload({}));
