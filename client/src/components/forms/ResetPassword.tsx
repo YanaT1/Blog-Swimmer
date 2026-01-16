@@ -65,10 +65,11 @@ const ResetPassword = observer(({token}: ResetPasswordProps) => {
             if (response.status === 200) {
                 setSuccess('Password reset successfully!');
                 setTimeout(() => navigate('/login'), 3000);
-            } catch (error: any) {
-            setMessageError(error.response?.data?.message || 'Unable to reset password');
             }
-        };
+        } catch (error: any) {
+            setMessageError(error.response?.data?.message || 'Unable to reset password');
+        }
+        }
 
     return (
         <div className='backgroundSection' style={{margin: '5% 10%'}}>

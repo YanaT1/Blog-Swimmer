@@ -29,9 +29,9 @@ class AuthService {
         return $host.post<AuthResponse>('/user/forgot-password', {email});
     }
 
-    static async resetPassword(token: string, password: string, confirmPassword: string)
+    static async resetPassword(token: string, password: string, matchPwd: string)
     : Promise<AxiosResponse<AuthResponse><{message: string}>> {
-        return $host.post<AuthResponse>(`/user/reset-password/${token}`, {password, confirmPassword});
+        return $host.post<AuthResponse>(`/user/reset-password/${token}`, {password, matchPwd});
     }
 }
 
