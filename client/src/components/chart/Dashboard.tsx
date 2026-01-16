@@ -10,12 +10,15 @@ import {resultsAPI} from '../../http/resultsAPI';
 
 const styles = [
   '50m Butterfly',
+  '100m Butterfly',
   '50m Freestyle',
   '100m Freestyle',
   '200m Freestyle',
+  '400m Fressstyle',
   '50m Backstroke',
   '50m Breaststroke',
   '100m Medley',
+  '200m Medley',
 ];
 
 const Dashboard: FC = () => {

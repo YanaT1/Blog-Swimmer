@@ -5,10 +5,10 @@ const authMiddleware = require('../middleware/authMiddleware');
 const checkRole = require('../middleware/checkRoleMiddleware');
 
 
-router.post('/admin-person78947', authMiddleware, checkRole('admin'), resultsController.addResult);
+router.post('/admin-person78946', authMiddleware, checkRole('admin'), resultsController.addResult);
 router.get('/bests', resultsController.getBestResults);
 router.get('/', resultsController.getAllResults);
-router.put('/admin-person78947/:id', authMiddleware, checkRole('admin'), resultsController.updateResult);
-router.delete('/admin-person78947/:id', authMiddleware, checkRole('admin'), resultsController.deleteResult);
+router.put('/admin-person78946/:id', authMiddleware, checkRole('admin'), resultsController.updateResult);
+router.delete('/admin-person78946/:id', authMiddleware, checkRole('admin'), resultsController.deleteResult);
 
 module.exports = router;
