@@ -17,6 +17,7 @@ export interface IYearsResultsStoreFull {
 export default class YearsResultsInfo implements IYearsResultsStoreFull {
     _resultsByYear: Record<string, IYearsResultsStore[]> = {};
     isLoading: boolean = false;
+    isLoaded: boolean = false;
 
     constructor() {
         makeAutoObservable(this);
@@ -44,6 +45,7 @@ export default class YearsResultsInfo implements IYearsResultsStoreFull {
     }
 
     async fetchResults() {
+        if (this.isLoading) return;
         this.isLoading = true;
         try {
             const results: IYearsResultsStore[] = await ResultsService.loadAll();
@@ -58,6 +60,7 @@ export default class YearsResultsInfo implements IYearsResultsStoreFull {
 
             runInAction(() => {
                 this._resultsByYear = grouped;
+                this.isLoaded = true;
             });
         } catch (e) {
             console.error('Error fetching results:', e);
