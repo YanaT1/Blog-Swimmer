@@ -32,9 +32,11 @@ const AdminResultsPanel = observer(() => {
 
 
     useEffect(() => {
-        if (years_results.availableYears.length === 0){
+       // if (years_results.availableYears.length === 0){
             years_results.fetchResults();
-    }}, []);
+   // }
+   }, 
+    []);
 
     const years = years_results.availableYears.slice().sort((a, b) => Number(b) - Number(a));
     const allResults = years_results.allResults;

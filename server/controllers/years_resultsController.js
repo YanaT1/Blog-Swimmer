@@ -36,7 +36,7 @@ class Years_resultsController {
 
     async update(req, res, next){
         try{
-            const id = req.params.id;
+            const id = Number (req.params.id);
             const {numer, date, place, pool_m_type, style_m_name, result, pts, medal} = req.body;
             const existing = await Years_results.findByPk(id);
             
