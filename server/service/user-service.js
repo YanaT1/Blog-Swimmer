@@ -5,6 +5,7 @@ const mailService = require('./mail-service');
 const tokenService = require('./token-service');
 const UserDto = require('../dtos/user-dto');
 const ApiError = require('../error/ApiError');
+const { Op } = require('sequelize');
 
 class UserService {
     async registration(email, role, password) {
