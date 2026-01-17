@@ -145,9 +145,9 @@ const LoginForm = observer( (): JSX.Element => {
 
                                         <Row className='d-flex justify-content-between mt-3 pl-3 pr-3'>
                                             <div className='pStyles'> 
-                                                <p>Don't have an account?</p>
+                                                {/* <p>Don't have an account?</p>
                                                 <Nav.Link as={Link} to={AppRoutes.Registration} style={{color:'#008DDA', textDecoration: 'none'}}>Sign Up Now</Nav.Link>
-                                                <br />
+                                                <br /> */}
                                                 <p style={{}}>Forgot your password?</p>
                                                 <Nav.Link as={Link} to={AppRoutes.ForgotPassword} style={{color:'#008DDA', textDecoration: 'none'}}>Reset It Here</Nav.Link>
                                             </div>
