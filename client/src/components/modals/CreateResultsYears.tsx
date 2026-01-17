@@ -26,7 +26,6 @@ interface CreateResultsYearsProps extends ModalProps {
 const CreateResultsYears: FC<CreateResultsYearsProps> = ({editResult, ...props}) => {
     const {pool_m, style_m, years_results} = useContext(Context) as State;
 
-    //const [numer, setNumer] = useState<number | ''>('');
     const [date, setDate] = useState<string>('');
     const [place, setPlace] = useState<string>('');
     const [selectedPool_m_type, setSelectedPool_m_type] = useState<string>('Wybierz basen');
@@ -37,7 +36,6 @@ const CreateResultsYears: FC<CreateResultsYearsProps> = ({editResult, ...props})
 
     useEffect(() => {
     if (editResult) {
-        //setNumer(editResult.numer ?? '');
         setDate(editResult.date ? editResult.date.slice(0, 10) : '');
         setPlace(editResult.place ?? '');
         setSelectedPool_m_type(editResult.pool_m_type ?? 'Wybierz basen');
@@ -46,7 +44,6 @@ const CreateResultsYears: FC<CreateResultsYearsProps> = ({editResult, ...props})
         setPts(editResult.pts ?? '');
         setSelectedMedal(editResult.medal ?? '');
     } else if (!props.show) {
-        //setNumer('');
         setDate('');
         setPlace('');
         setSelectedPool_m_type('Wybierz basen');
@@ -57,10 +54,6 @@ const CreateResultsYears: FC<CreateResultsYearsProps> = ({editResult, ...props})
     }}, [props.show, editResult]);
 
     const validateResultForm = (): boolean => {
-        // if (numer === '' || numer === null) {
-        //     alert('Proszę podać numer');
-        //     return false;
-        // }
         if (!date.trim()) {
             alert('Proszę podać datę otrzymania wyniku');
             return false;
@@ -95,8 +88,7 @@ const CreateResultsYears: FC<CreateResultsYearsProps> = ({editResult, ...props})
     const handleSave = async () => {
         if (!validateResultForm()) return;
 
-        const resultData = {
-            //numer: Number(numer), 
+        const resultData = { 
             date: date.trim(),
             place: place.trim(),
             pool_m_type: selectedPool_m_type,
@@ -150,13 +142,6 @@ const CreateResultsYears: FC<CreateResultsYearsProps> = ({editResult, ...props})
 
             <Modal.Body>
                 <Form>
-                    {/* <Form.Control type='number'
-                        placeholder='Wpisz numer'
-                        className='formStyle'
-                        value={numer}
-                        onChange={(e) => setNumer(e.target.value === '' ? '' : Number(e.target.value))}
-                    /> */}
-
                     <Form.Control type='date'
                         className='formStyle'
                         value={date}

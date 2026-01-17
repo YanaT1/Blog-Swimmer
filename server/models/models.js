@@ -39,7 +39,7 @@ const Personal_bests = sequelize.define('personal_bests', {
 
 const TypeOfMedals = sequelize.define('typeOfMedals', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    numer: {type: DataTypes.INTEGER, allowNull: false},
+    numer: {type: DataTypes.INTEGER, allowNull: true},
     medalType: {type: DataTypes.STRING, allowNull: false},
     medal_date: {type: DataTypes.STRING},
     place: {type: DataTypes.STRING},

@@ -1,4 +1,6 @@
-import {FC} from 'react';
+import {
+    FC,
+    useMemo} from 'react';
 import {
     Container, 
     Table} from 'react-bootstrap';
@@ -24,15 +26,15 @@ interface Props {
 }
 
 const MedalsTable: FC<Props> = ({ filtered }) => {
-    const sortedFiltered = [...filtered].sort((a, b) => {
-        const dateA = new Date(a.medal_date);
-        const dateB = new Date(b.medal_date);
-        return dateB.getTime() - dateA.getTime(); 
-    });
+    const sortedFiltered = useMemo (() => {
+        if (!filtered) return [];
+        return [...filtered].sort((a, b) => {
+            const dateA = new Date(a.medal_date);
+            const dateB = new Date(b.medal_date);
+            return dateB.getTime() - dateA.getTime(); 
+        });
+    }, [filtered]);
 
-    sortedFiltered.forEach((medal, index) => {
-        medal.numer = index + 1; 
-    });
 
     return (
         <Container fluid>
@@ -50,9 +52,9 @@ const MedalsTable: FC<Props> = ({ filtered }) => {
                     </tr>
                 </thead>
                 <tbody style={{ fontSize: '7px', textAlign: 'center', verticalAlign: 'middle' }}>
-                    {sortedFiltered.map((medal) => (
+                    {sortedFiltered.map((medal, index: number) => (
                         <tr key={medal.id}>
-                            <td>{medal.numer}</td>
+                            <td>{index + 1}</td>
                             <td>
                                 <div
                                     style={{

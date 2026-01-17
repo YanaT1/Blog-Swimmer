@@ -26,7 +26,6 @@ interface CreateMedalsProps extends ModalProps {
 const CreateMedals: FC<CreateMedalsProps> = ({ editMedal, ...props }) => {
     const {pool_m, style_m, typeOfMedals} = useContext(Context) as State;
 
-    const [numer, setNumer] = useState<number | ''>('');
     const [medalType, setMedalType] = useState<string>('Wybierz medal');
     const [medal_date, setMedal_date] = useState<string>('');
     const [place, setPlace] = useState<string>('');
@@ -37,7 +36,6 @@ const CreateMedals: FC<CreateMedalsProps> = ({ editMedal, ...props }) => {
 
     useEffect(() => {
     if (editMedal) {
-        setNumer(editMedal.numer ?? '');
         setMedalType(editMedal.medalType ?? 'Wybierz medal');
         setMedal_date(editMedal.medal_date ?? '');
         setPlace(editMedal.place ?? '');
@@ -46,7 +44,6 @@ const CreateMedals: FC<CreateMedalsProps> = ({ editMedal, ...props }) => {
         setResult(editMedal.result ?? '');
         setPts(editMedal.pts ?? '');
     } else if (!props.show) {
-        setNumer('');
         setMedalType('Wybierz medal');
         setMedal_date('');
         setPlace('');
@@ -57,10 +54,6 @@ const CreateMedals: FC<CreateMedalsProps> = ({ editMedal, ...props }) => {
     }}, [props.show, editMedal]);
 
     const validateMedalForm = (): boolean => {
-        if (numer === '' || numer === null) {
-            alert('Proszę podać numer');
-            return false;
-        }
         if (!medalType || !['Gold', 'Silver', 'Bronze', 'Cup', 'Certificate'].includes(medalType)) {
             alert('Proszę wybrać typ medalu');
             return false;
@@ -95,8 +88,7 @@ const CreateMedals: FC<CreateMedalsProps> = ({ editMedal, ...props }) => {
     const handleSave = async () => {
         if (!validateMedalForm()) return;
 
-        const medalData = {
-            numer: Number(numer), 
+        const medalData = { 
             medalType,
             medal_date: medal_date.trim(),
             place: place.trim(),
@@ -148,13 +140,6 @@ const CreateMedals: FC<CreateMedalsProps> = ({ editMedal, ...props }) => {
 
             <Modal.Body>
                 <Form>
-                    <Form.Control type='number'
-                       placeholder='Wpisz numer'
-                       className='formStyle'
-                       value={numer}
-                       onChange={(e) => setNumer(e.target.value === '' ? '' : Number(e.target.value))}
-                    />
-
                     <Dropdown>
                         <Dropdown.Toggle variant='outline-primary' id='dropdown-medalType' className='dropdownStyle'>
                             {medalType}
