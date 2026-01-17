@@ -3,12 +3,11 @@ const router = new Router();
 const userController = require('../controllers/userController');
 const {body} = require('express-validator');
 const authMiddleware = require('../middleware/authMiddleware');
-//const checkRole = require('../middleware/checkRoleMiddleware');
 
-router.post('/registration', 
-    body('email').isEmail(),
-    body('password').isLength({ min: 8, max: 32 }),
-    userController.registration);
+
+router.post('/registration', (req, res) => {
+    res.status(403).json({ message: "Registration is currently disabled for public access." });
+});
 router.post('/login', userController.login);
 router.post('/logout', userController.logout);
 router.post('/forgot-password', userController.forgotPassword); 

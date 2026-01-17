@@ -1,7 +1,6 @@
 export enum AppRoutes {
    Home = '/',
    Login = '/user/login',
-   Registration = '/user/registration',
    ForgotPassword = '/user/forgot-password',
    ResetPassword = '/user/reset-password/:token',
 

@@ -10,7 +10,6 @@ import {
  import AdminBestsPanel from '../components/admin/AdminBestsPanel';
  import AdminMedalsPanel from '../components/admin/AdminMedalsPanel';
  import AdminResultsPanel from '../components/admin/AdminResultsPanel';
- import RegistrationPage from '../pages/RegistrationPage';
  import LoginFormPage from '../pages/LoginFormPage';
  import PasswordPage from '../pages/PasswordPage';
  import IvanPage from '../pages/IvanPage';
@@ -49,9 +48,6 @@ import {
  
                   <Route path = {AppRoutes.Login}
                          element = {<LoginFormPage />}
-                  />
-                  <Route path = {AppRoutes.Registration}
-                         element = {<RegistrationPage />}
                   />
 
                   <Route path = {AppRoutes.ForgotPassword}
