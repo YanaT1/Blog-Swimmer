@@ -119,7 +119,7 @@ const AdminResultsPanel = observer(() => {
                                                     Wynik #{result.id}
                                                 </Card.Title>
                                                 <Card.Text>
-                                                    <strong>Numer:</strong> {result.numer} <br />
+                                                    {/* <strong>Numer:</strong> {result.numer} <br /> */}
                                                     <strong>Data:</strong> {result.date.slice(0, 10)} <br />
                                                     <strong>Miejsce:</strong> {result.place} <br />
                                                     <strong>Basen:</strong> {result.pool_m_type} <br />

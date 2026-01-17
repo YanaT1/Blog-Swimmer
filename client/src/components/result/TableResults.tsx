@@ -1,5 +1,7 @@
 import {useParams} from 'react-router-dom';
-import {useContext} from 'react';
+import {
+  useContext,
+  useMemo} from 'react';
 import {observer} from 'mobx-react-lite';
 import {Context} from '../../index';
 import { 
@@ -11,6 +13,8 @@ import {IYearsResultsStore} from '../../models/storeModels/IYearsResultsStore';
 import ResultCard from './ResultCard';
 import swimmerImg from '../../photos/swimmer.png';
 import Loader from '../Loader';
+
+
 
 const TableResults = observer(() => {
   const {year} = useParams();
@@ -33,15 +37,14 @@ const TableResults = observer(() => {
     );
   }
 
-  const sortedYearData = [...yearData].sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    return dateB.getTime() - dateA.getTime(); 
-  });
-
-  sortedYearData.forEach((result, index) => {
-    result.numer = index + 1; 
-  });
+  const sortedYearData = useMemo (() => {
+      if (!yearData) return []; 
+      return [...yearData].sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateB.getTime() - dateA.getTime(); 
+      });
+  }, [yearData]);
 
   const currentYear = parseInt(year ?? '0');
   const nextTwoYears = years_results.availableYears
@@ -73,7 +76,7 @@ const TableResults = observer(() => {
         Results {year}
       </h2>
 
-      <Table striped bordered hover responsive className="text-center">
+      <Table striped bordered hover responsive className='text-center'>
         <thead style={{ fontSize: '10px' }}>
           <tr>
             <th>№</th>
@@ -87,9 +90,9 @@ const TableResults = observer(() => {
           </tr>
         </thead>
         <tbody style={{fontSize: '7px'}}>
-          {sortedYearData.map((res: IYearsResultsStore) => (
+          {sortedYearData.map((res: IYearsResultsStore, index: number) => (
             <tr key={res.id}>
-              <td>{res.numer}</td> 
+              <td>{index + 1}</td> 
               <td>{res.date.slice(0, 10)}</td>
               <td>{res.place}</td>
               <td>{res.pool_m_type}</td>
