@@ -1,6 +1,6 @@
 export interface IYearsResultsStore {
     id: number;
-    numer: number;
+    numer?: number;
     date: string;         
     place: string;
     pool_m_type: string;
