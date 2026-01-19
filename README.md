@@ -76,9 +76,6 @@ ___
 
 ### **Frontend .env**
 + REACT_APP_API_URL = Your backend URL, e.g. https://www.mydomain.com
-+ REACT_APP_SERVICE_ID = Service ID for email/notification service
-+ REACT_APP_TEMPLATE_ID = Email template ID
-+ REACT_APP_PUBLIC_KEY = Public key for email service (Brevo)
 
 
 ### **Backend .env**
@@ -101,6 +98,7 @@ ___
 + SMTP_PORT = SMTP port
 + SMTP_USERNAME = SMTP username
 + SMTP_PASSWORD = SMTP password
+
 + BREVO_API_KEY = Brevo API key
 
 #### **URLs**
