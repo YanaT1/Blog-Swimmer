@@ -23,21 +23,19 @@ class TypeOfMedalsController {
 
     async update(req, res, next){
       try{
-          const id = req.params.id;
+          const {id} = req.params;
           const {numer, medalType, medal_date, place, pool, style, result, pts} = req.body;
-          const existing = await TypeOfMedals.findByPk(id);
-            
-          if (!existing) {
-              return res.status(404).json({message: 'Medal nie znaleziona'});
-          }
-
-          await TypeOfMedals.update(
+          const [updatedRows, [updatedRecord]] = await TypeOfMedals.update(
               {numer, medalType, medal_date, place, pool, style, result, pts},
-              {where: {id}}
+              { 
+                where: {id},
+                returning: true 
+              }
           );
-
-          const updated = await TypeOfMedals.findByPk(id);
-              return res.json(updated);
+          if (updatedRows === 0) {
+              return next(ApiError.badRequest('Medal nie znaleziona'));
+          }
+          return res.json(updatedRecord);
         } catch (e) {
             console.error('Błąd w update:', e);
             next(ApiError.badRequest(e.message));
@@ -46,9 +44,12 @@ class TypeOfMedalsController {
 
     async delete(req, res, next){
       try{
-        const id = req.params.id;
-        const deleted = await TypeOfMedals.destroy({ where:  {id} });
-            return res.json({ message: 'Medal deleted', id, deleted });
+        const {id} = req.params;
+        const deleted = await TypeOfMedals.destroy({where: {id}});
+        if (!deleted) {
+            return next(ApiError.badRequest('Medal already deleted or not found'));
+        }
+        return res.json({message: 'Medal deleted', id});
         } catch (e) {
             next(ApiError.badRequest(e.message));
         }

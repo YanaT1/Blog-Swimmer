@@ -24,9 +24,11 @@ class Style_mController {
 
     async getOne(req, res, next) {
         try{
-            const id = req.params.id;
-            const style_mId = await Style_m.findOne(
-                {where: {id:id}})
+            const {id} = req.params;
+            const style_mId = await Style_m.findByPk(id);
+            if (!style_mId) {
+                return next(ApiError.badRequest('Style not found'));
+            }
             return res.json(style_mId);
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -36,14 +38,17 @@ class Style_mController {
 
     async update(req, res, next){
         try{
-            const id = req.params.id;
-            const styleUpdate = await Style_m.update(
-                {name: req.body.name},
-                {where: {id:id}})
-                .then(() => {
-                    res.redirect('/style-m')
-                });
-                return res.json(styleUpdate);
+            const {id} = req.params;
+            const {name} = req.body;
+            const [updatedRows] = await Style_m.update(
+                {name},
+                {where: {id}}
+            );
+            if (updatedRows === 0) {
+                return next(ApiError.badRequest('Style not found or no changes made'));
+            }
+            const updatedStyle = await Style_m.findByPk(id);
+            return res.json(updatedStyle);
             } catch (e) {
                 next(ApiError.badRequest(e.message));
     
@@ -52,13 +57,12 @@ class Style_mController {
 
     async delete(req, res, next){
         try{
-            const id = req.body.id;
-            const style_mDelete = await Style_m.destroy(
-                {where: {id:id}})
-                .then(() => {
-                res.redirect('/style-m');
-            });
-            return res.json(style_mDelete);
+            const {id} = req.body;
+            const deleted = await Style_m.destroy({where: {id}});
+            if (!deleted) {
+                return next(ApiError.badRequest('Style not found'));
+            }
+            return res.json({message: 'Style deleted', id});
         } catch (e) {
             next(ApiError.badRequest(e.message));
         }

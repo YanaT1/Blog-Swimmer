@@ -1,4 +1,5 @@
-const {YearsResults} = require('../models/models'); 
+const {Years_results} = require('../models/models'); 
+const {Op} = require('sequelize');
 
 
 
@@ -50,20 +51,14 @@ const addResult = async (resultData) => {
 
 
 const updateResult = async (id, resultData) => {
-    const resultToUpdate = await YearsResults.findByPk(id);
-    if (resultToUpdate) {
-        return await resultToUpdate.update(resultData);
-    }
-    throw new Error('Result not found');
+    const item = await YearsResults.findByPk(id);
+    return item ? await item.update(data) : null;
 };
 
 
 const deleteResult = async (id) => {
-    const resultToDelete = await YearsResults.findByPk(id);
-    if (resultToDelete) {
-        return await resultToDelete.destroy();
-    }
-    throw new Error('Result not found');
+    const item = await YearsResults.findByPk(id);
+    return item ? await item.destroy() : null;
 };
 
 module.exports = {

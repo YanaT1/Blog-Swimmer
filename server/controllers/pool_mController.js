@@ -25,10 +25,12 @@ class Pool_mController {
 
     async getOne(req, res, next) {
         try{
-            const id = req.params.id;
-            const pool_mId = await Pool_m.findOne(
-                {where: {id:id}})
-            return res.json(pool_mId);
+            const {id} = req.params;
+            const pool = await Pool_m.findByPk(id)
+            if (!pool) {
+                return next(ApiError.badRequest('Pool type not found'));
+            }
+            return res.json(pool);
         } catch (e) {
             next(ApiError.badRequest(e.message));
         }
@@ -37,13 +39,12 @@ class Pool_mController {
     
     async delete(req, res, next){
         try{
-            const id = req.body.id;
-            const pool_mDelete = await Pool_m.destroy(
-                {where: {id:id}})
-                .then(() => {
-                res.redirect('/pool-m');
-            });
-            return res.json(pool_mDelete);
+            const {id} = req.params; 
+            const deleted = await Pool_m.destroy({where: {id}});
+            if (!deleted) {
+                return next(ApiError.badRequest('Nothing to delete'));
+            }
+            return res.json({message: 'Pool type deleted', id});
         } catch (e) {
             next(ApiError.badRequest(e.message));
         }

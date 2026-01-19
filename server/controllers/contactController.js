@@ -11,10 +11,15 @@ exports.handleContactForm = async (req, res) => {
     return res.status(400).json({error: 'Invalid email'});
   }
 
+  const sanitizedMessage = message.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
   const subject = `New message from ${name}`;
   const htmlContent = `<p><b>Name:</b> ${name}</p>
                        <p><b>Email:</b> ${email}</p>
-                       <p><b>Message:</b><br>${message}</p>
+                       <p><b>Message:</b></p>
+                       <div style='padding: 10px; border-radius: 5px;'>
+                          ${sanitizedMessage}
+                        </div>
                       `;
 
   try {

@@ -62,32 +62,23 @@ const Years_results = sequelize.define('years_results', {
 });
 
 
-User.hasMany(Token)
+User.hasOne(Token)
 Token.belongsTo(User);
 
 User.hasMany(Personal_bests)
 Personal_bests.belongsTo(User);
 
-Personal_bests.hasMany(Pool_m)
-Pool_m.belongsTo(Personal_bests);
-
-Personal_bests.hasMany(Style_m)
-Style_m.belongsTo(Personal_bests);
-
-TypeOfMedals.hasMany(Pool_m)
-Pool_m.belongsTo(TypeOfMedals);
-
-TypeOfMedals.hasMany(Style_m)
-Style_m.belongsTo(TypeOfMedals);
-
 User.hasMany(Years_results)
 Years_results.belongsTo(User);
 
-Years_results.hasMany(Pool_m)
-Pool_m.belongsTo(Years_results);
+Years_results.belongsTo(Pool_m, {foreignKey: 'pool_m_type', targetKey: 'typePool'});
+Years_results.belongsTo(Style_m, {foreignKey: 'style_m_name', targetKey: 'name'});
 
-Years_results.hasMany(Style_m)
-Style_m.belongsTo(Years_results);
+Personal_bests.belongsTo(Pool_m, {foreignKey: 'pool_m_type', targetKey: 'typePool'});
+Personal_bests.belongsTo(Style_m, {foreignKey: 'style_m_name', targetKey: 'name'});
+
+TypeOfMedals.belongsTo(Pool_m, {foreignKey: 'pool', targetKey: 'typePool'});
+TypeOfMedals.belongsTo(Style_m, {foreignKey: 'style', targetKey: 'name'});
 
 
 
