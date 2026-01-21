@@ -5,12 +5,16 @@ class ApiError extends Error{
         this.message = message;
     }
 
-    static unauthorizedError(message){
+    static unauthorized(message){
         return new ApiError(401, message);
     }
 
-    static badRequest(message){
+    static notFound(message = 'Not found') {
         return new ApiError(404, message);
+    }
+
+    static badRequest(message){
+        return new ApiError(400, message);
     }
 
     static internal(message){
