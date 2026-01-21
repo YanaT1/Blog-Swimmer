@@ -17,9 +17,9 @@ const App = observer( (): JSX.Element => {
     useEffect(() => {
         const init = async () => {
             try {
-                await user.checkAuth();
+                const userData = await user.checkAuth();
 
-                if (years_results.availableYears.length === 0) {
+                if (userData && years_results.availableYears.length === 0) {
                     await years_results.fetchResults();
                 }
             } catch (e) {
