@@ -78,7 +78,7 @@ export default class UserStore {
     async checkAuth() {
         this.setLoading(true);
         try {
-            const response = await AuthService.checkAuth(); 
+            const response = await AuthService.refresh(); 
             this.setAuthData(response.data.user, response.data.accessToken);
             return response.data.user;
         } catch (e) {

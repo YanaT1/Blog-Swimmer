@@ -39,7 +39,7 @@ $authHost.interceptors.response.use(
       originalRequest._isRetry = true;
       try {
         const response = await axios.get<AuthResponse>(
-          `${process.env.REACT_APP_API_URL}/user/auth`,
+          `${process.env.REACT_APP_API_URL}/user/refresh`,
           {withCredentials: true}
         );
 
