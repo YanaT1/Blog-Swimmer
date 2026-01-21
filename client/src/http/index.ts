@@ -46,7 +46,9 @@ $authHost.interceptors.response.use(
         const newToken = response.data.accessToken;
         user.setAuthData(response.data.user, newToken);
 
-        originalRequest.headers.set('Authorization', `Bearer ${newToken}`);
+        if (originalRequest.headers) {
+           originalRequest.headers.set('Authorization', `Bearer ${newToken}`);
+        }
         return $authHost.request(originalRequest);
       } catch (e) {
         user.setAuthData(null, null);
