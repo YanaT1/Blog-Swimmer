@@ -16,9 +16,10 @@ class UserController {
             const {email, role, password} = req.body;
             const userData = await userService.registration(email, role, password);
             res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'none'});
-            return res.json(
+            return res.json({
                 accessToken: userData.accessToken,
-                user: userData.user);
+                user: userData.user
+            });
         } catch (e) {
             next(ApiError.badRequest(e.message));
         }
@@ -29,10 +30,10 @@ class UserController {
             const {email, password} = req.body;
             const userData = await userService.login(email, password);
             res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'none'});
-            return res.json(
+            return res.json({
                 accessToken: userData.accessToken,
                 user: userData.user
-            );
+            });
         } catch (e) {
             next(ApiError.badRequest(e.message));
         }
@@ -64,9 +65,10 @@ class UserController {
             const {refreshToken} = req.cookies;
             const userData = await userService.refreshToken(refreshToken)
             res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'none'});
-            return res.json(
+            return res.json({
                 accessToken: userData.accessToken,
-                user: userData.user);
+                user: userData.user
+            S});
         } catch (e) {
             next(ApiError.badRequest(e.message));
         }
