@@ -21,7 +21,7 @@ class AuthService {
 
     static async checkAuth()
     : Promise<AxiosResponse<AuthResponse>> {
-        return $host.get<AuthResponse>('/user/auth');
+        return $host.get<AuthResponse>('/user/refresh');
     }
 
     static async forgotPassword(email: string)
