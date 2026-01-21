@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {
+  Context,
   user, 
   pool_m,
   style_m, 

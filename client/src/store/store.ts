@@ -14,12 +14,12 @@ export interface State {
   years_results: YearsResultsStore;
 }
 
-const user = new UserStore();
-const pool_m = new PoolMstore();
-const style_m = new StyleMstore();
-const personal_bests = new BestsStore();
-const typeOfMedals = new TypeOfMedalsStore();
-const years_results = new YearsResultsStore();
+export const user = new UserStore();
+export const pool_m = new PoolMstore();
+export const style_m = new StyleMstore();
+export  personal_bests = new BestsStore();
+export const typeOfMedals = new TypeOfMedalsStore();
+export const years_results = new YearsResultsStore();
 
 export const Context = createContext<State>({
   user, pool_m, style_m, personal_bests, typeOfMedals, years_results})
