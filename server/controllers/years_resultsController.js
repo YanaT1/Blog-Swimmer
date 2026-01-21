@@ -46,7 +46,7 @@ class Years_resultsController {
 
     async delete(req, res, next){
         try{
-        const id = req.params.id;
+        const {id} = req.params;
         const deleted = await Years_results.destroy({where:  {id}});
         if (!deleted) {
                 return next(ApiError.badRequest('Nie znaleziono wyniku до usunięcia'));
