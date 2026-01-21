@@ -1,6 +1,6 @@
 import axios, {AxiosRequestConfig} from 'axios';
 import {AuthResponse} from '../models/response/AuthResponse';
-import {UserStore} from '../store/UserStore';
+import UserStore from '../store/UserStore';
 
 
 
