@@ -16,18 +16,19 @@ const App = observer( (): JSX.Element => {
 
     useEffect(() => {
         const init = async () => {
-            if (localStorage.getItem('token')) {
+            try {
                 await user.checkAuth();
-            } else {
+
+                if (years_results.availableYears.length === 0) {
+                    await years_results.fetchResults();
+                }
+            } catch (e) {
+                console.error('Initialization error:', e);
+            } finally {
                 user.setLoading(false);
             }
-
-            if (years_results.availableYears.length === 0) {
-                await years_results.fetchResults();
-            }
         };
-
-       init().catch(console.error);
+        init();
     }, []);
 
     
