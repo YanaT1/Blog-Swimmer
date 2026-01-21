@@ -19,7 +19,7 @@ class AuthService {
         await $authHost.post('/user/logout');
     }
 
-    static async checkAuth()
+    static async refresh()
     : Promise<AxiosResponse<AuthResponse>> {
         return $host.get<AuthResponse>('/user/refresh');
     }
