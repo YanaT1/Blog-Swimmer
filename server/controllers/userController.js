@@ -68,7 +68,7 @@ class UserController {
             return res.json({
                 accessToken: userData.accessToken,
                 user: userData.user
-            S});
+            });
         } catch (e) {
             next(ApiError.badRequest(e.message));
         }
