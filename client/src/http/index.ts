@@ -1,5 +1,6 @@
 import axios, {AxiosRequestConfig} from 'axios';
 import {AuthResponse} from '../models/response/AuthResponse';
+impoet {UserStore} from '../store/UserStore';
 
 
 
@@ -19,12 +20,10 @@ const $authHost = axios.create({
 });
 
 $authHost.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-
+  const token = UserStore.accessToken;
   if (token) {
-    config.headers = config.headers ?? {};
-    config.headers.Authorization = `Bearer ${token}`;
-  }
+        config.headers.set ('Authorization', `Bearer ${token}`);
+    }
   return config;
 });
 
@@ -32,7 +31,6 @@ $authHost.interceptors.response.use(
   (config) => config,
   async (error) => {
     const originalRequest = error.config as RetryAxiosRequestConfig;
-
     if (
       axios.isAxiosError(error) &&
       error.response?.status === 401 &&
@@ -42,20 +40,19 @@ $authHost.interceptors.response.use(
       try {
         const response = await axios.get<AuthResponse>(
           `${process.env.REACT_APP_API_URL}/user/auth`,
-          { withCredentials: true }
+          {withCredentials: true}
         );
 
-        localStorage.setItem('token', response.data.accessToken);
+        const newToken = response.data.accessToken;
+        UserStore.setAuthData(response.data.user, newToken);
 
-        originalRequest.headers = originalRequest.headers ?? {};
-        originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
+        originalRequest.headers.set('Authorization', `Bearer ${newToken}`);
         return $authHost.request(originalRequest);
       } catch (e) {
-        console.log('User not logged in (refresh failed)');
-        localStorage.removeItem('token'); 
+        UserStore.setAuthData(null, null);
+        console.log('Session expired');
       }
     }
-
     throw error;
   }
 );

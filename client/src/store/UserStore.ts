@@ -12,6 +12,7 @@ export default class UserStore {
     isAuth = false;
     isAdmin = false;
     isLoading = true;
+    accessToken: string | null = null;
 
     constructor() {
         makeAutoObservable(this);
@@ -37,19 +38,19 @@ export default class UserStore {
         return this.user
     }
     
+    setAuthData(user: IUser | null, token: string | null) {
+        this.user = user;
+        this.accessToken = token;
+        this.isAuth = !!user;
+        this.isAdmin = user?.role === Role.Admin;
+    }
 
     async login(email: string, password: string) {
        try {
-            const response = await AuthService.login(email, password) as { data: AuthResponse };
-            localStorage.setItem('token', response.data.accessToken);
-            this.setAuth(true);
-            this.setUser(response.data.user);
-        } catch (e: unknown) {
-            if (axios.isAxiosError(e)) {
-                console.error('Login error:', e.response?.data || e.message);
-            } else {
-                console.error('Unknown error authentication:', e);
-            }
+            const response = await AuthService.login(email, password);
+            this.setAuthData(response.data.user, response.data.accessToken);
+        } catch (e) {
+            this.handleError(e, 'Login error');
             throw e;
         }
     }
@@ -57,16 +58,11 @@ export default class UserStore {
     async registration(email: string, password: string, role: Role) {
         try {
                 const response = await AuthService.registration(email, password, role);
-                localStorage.setItem('token', response.data.accessToken);
+                this.setAuthData(response.data.user, response.data.accessToken);
                 this.setAuth(true);
-                this.setUser(response.data.user);
                 alert('Thank you for signing up. Please check your email. See you soon, Ivan.')
-            } catch (e: unknown) {
-                if (axios.isAxiosError(e)) {
-                    console.error('Registration error:', e.response?.data || e.message);
-                } else {
-                  console.error('Unknown registration error:', e);
-                }
+            } catch (e) {
+                this.handleError(e, 'Registration error');
                 throw e;
             }
         }
@@ -74,16 +70,8 @@ export default class UserStore {
     async logout() {
         try {
             await AuthService.logout();
-        } catch (e: unknown) {
-            if (axios.isAxiosError(e)) {
-                console.log('Logout error:', e.response?.data || e.message);
-            } else {
-                console.log('Unknown logout error:', e);
-            }
         } finally {
-            localStorage.removeItem('token');
-            this.setAuth(false);
-            this.setUser(null);
+            this.setAuthData(null, null);
         }
     }
         
@@ -91,28 +79,22 @@ export default class UserStore {
     async checkAuth() {
         this.setLoading(true);
         try {
-            const response = await axios.get<AuthResponse>(`${process.env.REACT_APP_API_URL}/user/auth`, 
-                             {withCredentials: true});
-            //console.log(response);
-            localStorage.setItem('token', response.data.accessToken);
-            this.setAuth(true);
-            this.setUser(response.data.user);
+            const response = await AuthService.checkAuth(); 
+            this.setAuthData(response.data.user, response.data.accessToken);
             return response.data.user;
-        } catch (e: unknown) {
-            if (axios.isAxiosError(e)) {
-                if (e.response?.status === 401) {
-                    console.log('User is not login');
-                } else {
-                    console.error('Error authentication:', e.response?.data || e.message);
-                }
-            } else {
-                console.error('Unknown error authentication:', e);
-            }
-            this.setAuth(false);
-            this.setUser(null);
-            return null; 
+        } catch (e) {
+            this.setAuthData(null, null);
+            return null;
             } finally {
                 this.setLoading(false);
+            }
+        }
+
+        private handleError(e: unknown, message: string) {
+            if (axios.isAxiosError(e)) {
+                console.error(`${message}:`, e.response?.data || e.message);
+            } else {
+                console.error(`Unknown ${message}:`, e);
             }
         }
     }
