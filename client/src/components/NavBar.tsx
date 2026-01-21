@@ -11,7 +11,7 @@ import {
     Container} from 'react-bootstrap';
 import {IUser} from '../models/IUser';
 import {Role} from '../models/ERole';
-import {Context} from '../index';
+import {Context} from '../store/store';
 import ScrollToTop from './ScrollToTop';
 import '../css/navbar.css';
 import {observer} from 'mobx-react-lite';

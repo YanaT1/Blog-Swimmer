@@ -10,7 +10,7 @@ import {Link} from 'react-router-dom';
 
 import {useContext} from 'react';
 import {observer} from 'mobx-react-lite';
-import {Context} from '../index';
+import {Context} from '../store/store';
 
 import circle4 from '../photos/bubble.png';
 import circle1 from '../photos/blob2.png';

@@ -3,7 +3,7 @@ import {
     useContext} from 'react';
 import {useParams} from 'react-router-dom';
 import {observer} from 'mobx-react-lite';
-import {Context} from '../index';
+import {Context} from '../store/store';
 import MedalsTable from '../components/MedalsTable';
 import Loader from '../components/Loader';
 import './stylePage.css';

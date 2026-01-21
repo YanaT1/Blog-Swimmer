@@ -9,7 +9,7 @@ import {
 import {Link} from 'react-router-dom';
 
 import {observer} from 'mobx-react-lite';
-import {Context} from '../index';
+import {Context} from '../store/store';
 
 import circle1 from '../photos/blob2.png';
 import circle4 from '../photos/bubble.png';
