@@ -21,7 +21,7 @@ class UserController {
                 user: userData.user
             });
         } catch (e) {
-            next(ApiError.badRequest(e.message));
+            next(e);
         }
     } 
     
@@ -35,7 +35,7 @@ class UserController {
                 user: userData.user
             });
         } catch (e) {
-            next(ApiError.badRequest(e.message));
+            next(e);
         }
     }
     
@@ -46,7 +46,7 @@ class UserController {
             res.clearCookie('refreshToken', {httpOnly: true, secure: true, sameSite: 'none'})
             return res.json(token);
         } catch (e) {
-            next(ApiError.badRequest(e.message));
+            next(e);
         }
     }
 
@@ -56,7 +56,7 @@ class UserController {
             await userService.activate(activationLink);
             return res.redirect(process.env.CLIENT_URL);
         } catch (e) {
-            next(ApiError.badRequest(e.message));
+            next(e);
         }
     }
 
@@ -70,7 +70,7 @@ class UserController {
                 user: userData.user
             });
         } catch (e) {
-            next(ApiError.badRequest(e.message));
+            next(e);
         }
     }
 
@@ -83,7 +83,7 @@ class UserController {
                 user: userData.user
             });
         } catch(e) {
-            next(ApiError.badRequest(e.message));
+            next(e);
         }
     }    
 
@@ -98,7 +98,7 @@ class UserController {
             }))
             return res.json(userDto);
         } catch(e) {
-            next(ApiError.badRequest(e.message));
+            next(e);
         }
     }
 
@@ -116,7 +116,7 @@ class UserController {
             }));
             return res.json(usersDto);
         } catch (e) {
-        next(ApiError.badRequest(e.message));
+        next(e);
         }
     }
 
@@ -126,7 +126,7 @@ class UserController {
             const result = await userService.forgotPassword(email);
             return res.json(result);
         } catch (e) {
-            next(ApiError.badRequest(e.message));
+            next(e);
         }
     }
 
@@ -137,7 +137,7 @@ class UserController {
             const result = await userService.resetPassword(token, password, confirmPassword);
             return res.json(result);
         } catch (e) {
-            next(ApiError.badRequest(e.message));
+            next(e);
         }
     }
 }
