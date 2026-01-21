@@ -17,7 +17,7 @@ export interface State {
 export const user = new UserStore();
 export const pool_m = new PoolMstore();
 export const style_m = new StyleMstore();
-export  personal_bests = new BestsStore();
+export const personal_bests = new BestsStore();
 export const typeOfMedals = new TypeOfMedalsStore();
 export const years_results = new YearsResultsStore();
 
