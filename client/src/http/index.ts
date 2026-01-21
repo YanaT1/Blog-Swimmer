@@ -1,6 +1,6 @@
 import axios, {AxiosRequestConfig} from 'axios';
 import {AuthResponse} from '../models/response/AuthResponse';
-import UserStore from '../store/UserStore';
+import {user} from '../index';
 
 
 
@@ -20,7 +20,7 @@ const $authHost = axios.create({
 });
 
 $authHost.interceptors.request.use((config) => {
-  const token = UserStore.accessToken;
+  const token = user.accessToken;
   if (token) {
         config.headers.set ('Authorization', `Bearer ${token}`);
     }
@@ -44,12 +44,12 @@ $authHost.interceptors.response.use(
         );
 
         const newToken = response.data.accessToken;
-        UserStore.setAuthData(response.data.user, newToken);
+        user.setAuthData(response.data.user, newToken);
 
         originalRequest.headers.set('Authorization', `Bearer ${newToken}`);
         return $authHost.request(originalRequest);
       } catch (e) {
-        UserStore.setAuthData(null, null);
+        user.setAuthData(null, null);
         console.log('Session expired');
       }
     }
