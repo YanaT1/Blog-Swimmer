@@ -6,7 +6,7 @@ import AppRouter from './components/AppRouter';
 import Loader from './components/Loader';
 import './index.css';
 import {observer} from 'mobx-react-lite';
-import {Context, State} from './index';
+import {Context, State} from './store/store';
 
 
 
