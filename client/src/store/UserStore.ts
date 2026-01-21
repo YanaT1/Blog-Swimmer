@@ -1,7 +1,6 @@
 import {IUser} from '../models/IUser';
 import {Role} from '../models/ERole'; 
 import AuthService from '../services/AuthService';
-import {AuthResponse} from '../models/response/AuthResponse';
 import {makeAutoObservable} from 'mobx';
 import axios from 'axios';
 
