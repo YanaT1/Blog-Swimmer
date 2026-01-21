@@ -15,7 +15,7 @@ class UserController {
             }
             const {email, role, password} = req.body;
             const userData = await userService.registration(email, role, password);
-            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'lax'});
+            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'none'});
             return res.json(userData);
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -26,7 +26,7 @@ class UserController {
         try {
             const {email, password} = req.body;
             const userData = await userService.login(email, password);
-            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'lax'});
+            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'none'});
             return res.json(userData);
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -37,7 +37,7 @@ class UserController {
         try {
             const {refreshToken} = req.cookies;
             const token = await userService.logout(refreshToken)
-            res.clearCookie('refreshToken', {httpOnly: true, secure: true, sameSite: 'lax'})
+            res.clearCookie('refreshToken', {httpOnly: true, secure: true, sameSite: 'none'})
             return res.json(token);
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -58,7 +58,7 @@ class UserController {
         try {
             const {refreshToken} = req.cookies;
             const userData = await userService.refresh(refreshToken)
-            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'lax'});
+            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'none'});
             return res.json(userData);
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -68,7 +68,7 @@ class UserController {
     async check(req, res, next) {
         try {
             const userData = await userService.check(req.user.id);
-            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'lax'});
+            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'none'});
             return res.json(userData);
         } catch(e) {
             next(ApiError.badRequest(e.message));
