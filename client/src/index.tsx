@@ -9,7 +9,7 @@ import {
   style_m, 
   personal_bests, 
   typeOfMedals, 
-  years_results} from '../store/store';
+  years_results} from './store/store';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
