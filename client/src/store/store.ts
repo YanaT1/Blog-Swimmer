@@ -1,9 +1,9 @@
-import UserStore from './store/UserStore';
-import BestsStore from './store/BestsStore';
-import PoolMstore from './store/PoolMstore';
-import StyleMstore from './store/StyleMstore';
-import TypeOfMedalsStore from './store/TypeOfMedalsStore';
-import YearsResultsStore from './store/YearsResultsStore';
+import UserStore from '../store/UserStore';
+import BestsStore from '../store/BestsStore';
+import PoolMstore from '../store/PoolMstore';
+import StyleMstore from '../store/StyleMstore';
+import TypeOfMedalsStore from '../store/TypeOfMedalsStore';
+import YearsResultsStore from '../store/YearsResultsStore';
 
 export interface State {
   user: UserStore;
