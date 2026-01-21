@@ -48,7 +48,10 @@ class Years_resultsController {
         try{
         const id = req.params.id;
         const deleted = await Years_results.destroy({where:  {id}});
-            return res.json({message: 'Result deleted', id, deleted});
+        if (!deleted) {
+                return next(ApiError.badRequest('Nie znaleziono wyniku до usunięcia'));
+            }
+            return res.json({message: 'Result deleted', id});
         } catch (e) {
             next(ApiError.badRequest(e.message));
         }
