@@ -12,7 +12,7 @@ import {
 import '../../css/modals.css';
 import {
     Context,
-    State} from '../../index';
+    State} from '../../store/store';
 import {IPoolMstore} from '../../models/storeModels/IPoolMstore';
 import {IStyleMstore} from '../../models/storeModels/IStyleMstore';
 import {IYearsResultsStore} from '../../models/storeModels/IYearsResultsStore';
