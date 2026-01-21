@@ -78,7 +78,10 @@ class UserController {
         try {
             const userData = await userService.check(req.user.id);
             res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true, sameSite: 'none'});
-            return res.json(userData);
+            return res.json({
+                accessToken: userData.accessToken,
+                user: userData.user
+            });
         } catch(e) {
             next(ApiError.badRequest(e.message));
         }
