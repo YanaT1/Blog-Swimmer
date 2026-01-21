@@ -22,35 +22,22 @@ class Years_resultsController {
         }
     }
 
-    // async getOne(req, res, next) {
-    //     try{
-    //         const id = req.params.id;
-    //         const years_resultsId = await Years_results.findOne(
-    //             {where: {id:id}})
-    //         return res.json(years_resultsId);
-    //     } catch (e) {
-    //         next(ApiError.badRequest(e.message));
-    //     }
-    // }
-
-
+    
     async update(req, res, next){
         try{
-            const id = req.params.id;
+            const {id} = req.params;
             const {numer, date, place, pool_m_type, style_m_name, result, pts, medal} = req.body;
-            const existing = await Years_results.findByPk(id);
-            
-            if (!existing) {
-                return res.status(404).json({message: 'Wynik nie znaleziony'});
-            }
-            
-            await Years_results.update(
+            const [updatedRows, [updatedResult]] = await Years_results.update(
                 {numer, date, place, pool_m_type, style_m_name, result, pts, medal},
-                {where: {id}}
+                {
+                    where: {id},
+                    returning: true 
+                }
             );
-            
-            const updated = await Years_results.findByPk(id);
-              return res.json(updated);
+            if (updatedRows === 0) {
+                return next(ApiError.badRequest('Wynik został nie znaleziony'));
+            }
+            return res.json(updatedResult);
         } catch (e) {
             console.error('Błąd w update:', e);
             next(ApiError.badRequest(e.message));

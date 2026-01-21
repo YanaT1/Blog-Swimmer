@@ -36,7 +36,7 @@ class PersonalBestsController {
             );
 
             if (updatedRows === 0) {
-                return next(ApiError.badRequest('Rekord nie został znaleziony'));
+                return next(ApiError.badRequest('Rekord został nie znaleziony'));
             }
             return res.json(updatedRecord);
         } catch (e) {
