@@ -6,7 +6,7 @@ import {
     useParams,
     useNavigate} from 'react-router-dom';
 import {observer} from 'mobx-react-lite';
-import {Context} from '../../store/store';
+import {Context} from '../store/store';
 import {
     Container, 
     Table,
