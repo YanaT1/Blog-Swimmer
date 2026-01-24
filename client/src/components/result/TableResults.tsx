@@ -17,7 +17,7 @@ import Loader from '../Loader';
 
 
 const TableResults = observer(() => {
-  const {year} = useParams();
+  const {year} = useParams<{year: string}>();
   const {years_results} = useContext(Context);
 
   const yearData = years_results.getResultsByYear(year ?? '');
@@ -46,13 +46,16 @@ const TableResults = observer(() => {
       });
   }, [yearData]);
 
-  const currentYear = parseInt(year ?? '0');
-  const nextTwoYears = years_results.availableYears
-    .map((y) => parseInt(y))
-    .filter((y) => y > currentYear)
-    .sort((a, b) => a - b)
+  const neighborYears = useMemo(() => {
+    const currentYear = parseInt(year || '0', 10);
+    return years_results?.availableYears?
+    .map(Number)
+    .filter((y) => y !== currentYear)
+    .sort((a, b) => Math.abs(currentYear - a) - Math.abs(currentYear - b))
     .slice(0, 2)
-    .map((y) => y.toString());
+    .sort((a, b) => a - b)
+    .map(String);
+  }, [years_results.availableYears, year]);
 
   const getMedalStyle = (medal: string): string => {
     switch (medal) {
@@ -117,9 +120,9 @@ const TableResults = observer(() => {
         </tbody>
       </Table>
 
-      {nextTwoYears.length > 0 && (
+      {neighborYears.length > 0 && (
         <Row>
-          {nextTwoYears.map((nextYear: string) => (
+          {neighborYears.map((nextYear: string) => (
             <Col key={nextYear} xs={12} md={6} lg={6} className='styleCol'>
               <ResultCard
                 image={swimmerImg}
