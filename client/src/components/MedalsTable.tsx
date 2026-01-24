@@ -112,7 +112,7 @@ const MedalsTable: FC<Props> = observer(({ filtered }) => {
                                 variant='outline-primary'
                                 className='d-flex justify-content-center mb-4'
                                 style={{width: '100%', maxWidth: 400, borderRadius: 15}}
-                                onClick={() => navigate(`/medals/${year}`)}
+                                onClick={() => navigate(`/medals/${nextYear}`)}
                             >
                             Medals {nextYear}
                             </Button>
