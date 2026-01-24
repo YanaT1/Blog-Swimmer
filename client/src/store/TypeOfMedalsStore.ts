@@ -8,6 +8,7 @@ import {MedalsService} from '../services/MedalsService';
 
 export interface ITypeOfMedalsStoreFull {
     medals: ITypeOfMedalsStore[];
+    availableYears: string[];
     isLoading: boolean;
     fetchMedals(): Promise<void>;
     addMedal(medal: Omit<ITypeOfMedalsStore, 'id'>): Promise<void>;
@@ -25,6 +26,13 @@ export default class TypeOfMedalsInfo implements ITypeOfMedalsStoreFull {
 
     get medals(): ITypeOfMedalsStore[] {
         return this._typeOfMedals;
+    }
+
+    get availableYears(): string[] {
+        const years = this._typeOfMedals.map(medal => 
+            new Date(medal.medal_date).getFullYear().toString()
+        );
+        return Array.from(new Set(years)).sort();
     }
 
     async fetchMedals() {
