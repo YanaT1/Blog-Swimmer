@@ -10,6 +10,7 @@ import {Context} from '../store/store';
 import {
     Container, 
     Table,
+    Button,
     Row, 
     Col} from 'react-bootstrap';
 import {ITypeOfMedalsStore} from '../models/storeModels/ITypeOfMedalsStore';
