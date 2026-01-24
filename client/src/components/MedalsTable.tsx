@@ -1,9 +1,17 @@
 import {
     FC,
-    useMemo} from 'react';
+    useMemo,
+    useContext} from 'react';
+import {
+    useParams,
+    useNavigate} from 'react-router-dom';
+import {observer} from 'mobx-react-lite';
+import {Context} from '../../store/store';
 import {
     Container, 
-    Table} from 'react-bootstrap';
+    Table,
+    Row, 
+    Col} from 'react-bootstrap';
 import {ITypeOfMedalsStore} from '../models/storeModels/ITypeOfMedalsStore';
 
 
@@ -25,7 +33,11 @@ interface Props {
     filtered: ITypeOfMedalsStore[];
 }
 
-const MedalsTable: FC<Props> = ({ filtered }) => {
+const MedalsTable: FC<Props> = observer(({ filtered }) => {
+    const navigate = useNavigate();
+    const {year} = useParams<{year: string}>();
+    const {typeOfMedals} = useContext(Context);
+
     const sortedFiltered = useMemo (() => {
         if (!filtered) return [];
         return [...filtered].sort((a, b) => {
@@ -34,6 +46,18 @@ const MedalsTable: FC<Props> = ({ filtered }) => {
             return dateB.getTime() - dateA.getTime(); 
         });
     }, [filtered]);
+
+    const neighborYears = useMemo(() => {
+    const currentYear = parseInt(year || '0', 10);
+    const years = typeOfMedals?.availableYears || [];
+    return years
+    .map(Number)
+    .filter((y) => y !== currentYear)
+    .sort((a, b) => Math.abs(currentYear - a) - Math.abs(currentYear - b))
+    .slice(0, 2)
+    .sort((a, b) => a - b)
+    .map(String);
+  }, [typeOfMedals.availableYears, year]);
 
 
     return (
@@ -78,8 +102,25 @@ const MedalsTable: FC<Props> = ({ filtered }) => {
                     ))}
                 </tbody>
             </Table>
+
+            {neighborYears.length > 0 && (
+                <Row>
+                    {neighborYears.map((nextYear: string) => (
+                        <Col key={nextYear} xs={12} md={6} lg={6} className='styleCol'>
+                            <Button type='button'
+                                variant='outline-primary'
+                                className='d-flex justify-content-center mb-4'
+                                style={{width: '100%', maxWidth: 400, borderRadius: 15}}
+                                onClick={() => navigate(`/medals/${year}`)}
+                            >
+                            Medals {neighborYears}
+                            </Button>
+                        </Col>
+                    ))}
+                </Row>
+            )}
         </Container>
     );
-};
+});
 
 export default MedalsTable;
