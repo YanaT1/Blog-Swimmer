@@ -114,7 +114,7 @@ const MedalsTable: FC<Props> = observer(({ filtered }) => {
                                 style={{width: '100%', maxWidth: 400, borderRadius: 15}}
                                 onClick={() => navigate(`/medals/${year}`)}
                             >
-                            Medals {neighborYears}
+                            Medals {nextYear}
                             </Button>
                         </Col>
                     ))}
