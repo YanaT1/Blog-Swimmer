@@ -48,7 +48,8 @@ const TableResults = observer(() => {
 
   const neighborYears = useMemo(() => {
     const currentYear = parseInt(year || '0', 10);
-    return years_results?.availableYears?
+    const years = years_results?.availableYears || [];
+    return years
     .map(Number)
     .filter((y) => y !== currentYear)
     .sort((a, b) => Math.abs(currentYear - a) - Math.abs(currentYear - b))
