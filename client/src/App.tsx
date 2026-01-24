@@ -17,14 +17,13 @@ const App = observer( (): JSX.Element => {
     useEffect(() => {
         const init = async () => {
             try {
-                const userData = await user.checkAuth();
-
-                if (userData && years_results.availableYears.length === 0) {
-                    await years_results.fetchResults();
-                }
+                await user.checkAuth();
             } catch (e) {
                 console.error('Initialization error:', e);
             } finally {
+                if (years_results.availableYears.length === 0) {
+                    await years_results.fetchResults();
+                }
                 user.setLoading(false);
             }
         };
