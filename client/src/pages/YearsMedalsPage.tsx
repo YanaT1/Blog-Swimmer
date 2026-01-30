@@ -1,6 +1,7 @@
 import {
     useEffect, 
-    useContext} from 'react';
+    useContext,
+    useMemo} from 'react';
 import {useParams} from 'react-router-dom';
 import {observer} from 'mobx-react-lite';
 import {Context} from '../store/store';
