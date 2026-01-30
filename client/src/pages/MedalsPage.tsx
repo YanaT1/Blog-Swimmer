@@ -12,6 +12,7 @@ import {
     Row, 
     Col} from 'react-bootstrap';
 import Medals from '../components/Medals';
+import Loader from '../components/Loader';
 import './stylePage.css';
 
 
