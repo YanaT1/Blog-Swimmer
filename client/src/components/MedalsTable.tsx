@@ -105,7 +105,7 @@ const MedalsTable: FC<Props> = observer(({ filtered }) => {
             </Table>
 
             {neighborYears.length > 0 && (
-                <Row>
+                <Row style={{marginTop: '5%'}}>
                     {neighborYears.map((nextYear: string) => (
                         <Col key={nextYear} xs={6} md={6} lg={6} className='styleCol'>
                             <Button type='button'
