@@ -33,7 +33,7 @@ export default class TypeOfMedalsInfo implements ITypeOfMedalsStoreFull {
     }
 
     get availableYears(): string[] {
-        return Object.keys(this._typeOfMedals).sort();
+        return Object.keys(this._typeOfMedals).sort((a, b) => Number(b) - Number(a));
     }
 
     async fetchMedals() {

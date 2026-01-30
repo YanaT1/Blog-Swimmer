@@ -29,14 +29,7 @@ const MedalsPage = observer(() => {
         return <Loader />;
     }
 
-    const sortedYears = useMemo(() => {
-        const medalsData = typeOfMedals.medals; 
-        const keys = Object.keys(medalsData);
-        return keys
-            .map(Number)                 
-            .sort((a, b) => b - a)       
-            .map(String);                 
-    }, [typeOfMedals.medals, typeOfMedals.availableYears]);
+    const years = typeOfMedals.availableYears;
 
   
     return (
@@ -44,7 +37,8 @@ const MedalsPage = observer(() => {
         <h2 className='title'>Medals</h2>
         <Container fluid>
         <Row className='containerMargin'>
-          {sortedYears.map((year) => (
+          {years.length === 0 && <p className="text-center">No years available</p>}
+          {years.map((year) => (
             <Col key={year} xs={6} md={4} lg={4}   
               className='d-flex justify-content-center mb-4'
             >
