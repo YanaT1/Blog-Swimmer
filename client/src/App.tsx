@@ -3,6 +3,7 @@ import {
   useEffect} from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import AppRouter from './components/AppRouter';
+import Cookie from './components/Cookie';
 import Loader from './components/Loader';
 import './index.css';
 import {observer} from 'mobx-react-lite';
@@ -42,6 +43,7 @@ const App = observer( (): JSX.Element => {
         <Router>
             <div className='wrapper'>
                 <AppRouter />
+                <Cookie />
             </div>
         </Router>
     );
