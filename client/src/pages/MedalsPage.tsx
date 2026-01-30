@@ -1,9 +1,7 @@
 import {
   useContext,
   useEffect} from 'react';
-import {
-  useNavigate,
-  useParams} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {observer} from 'mobx-react-lite';
 import {Context} from '../store/store';
 import {
