@@ -48,8 +48,7 @@ export default class YearsResultsInfo implements IYearsResultsStoreFull {
         if (this.isLoading) return;
         this.isLoading = true;
         try {
-            const results: IYearsResultsStore[] = await ResultsService.loadAll();
-            console.log('Fetched results:', results); 
+            const results: IYearsResultsStore[] = await ResultsService.loadAll(); 
             const grouped: Record<string, IYearsResultsStore[]> = {};
 
             results.forEach((res) => {
@@ -96,7 +95,6 @@ export default class YearsResultsInfo implements IYearsResultsStoreFull {
                 for (const y in this._resultsByYear) {
                     const index = this._resultsByYear[y].findIndex((r: IYearsResultsStore) => r.id === id);
                     if (index !== -1) {
-                        // Перемещаем в другой год, если изменился
                         if (y !== newYear) {
                             this._resultsByYear[y].splice(index, 1); 
                             if (!this._resultsByYear[newYear]) this._resultsByYear[newYear] = [];
