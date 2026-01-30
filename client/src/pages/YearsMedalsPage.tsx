@@ -1,7 +1,6 @@
 import {
     useEffect, 
-    useContext,
-    useMemo} from 'react';
+    useContext} from 'react';
 import {useParams} from 'react-router-dom';
 import {observer} from 'mobx-react-lite';
 import {Context} from '../store/store';
@@ -18,13 +17,6 @@ function YearsMedalsPage() {
     useEffect(() => {
         typeOfMedals.fetchMedals();
     }, [typeOfMedals, year]);
-
-    const sortedYears = useMemo(() => {
-        return Object.keys(typeOfMedals.medals)
-            .map(Number)                 
-            .sort((a, b) => b - a)       
-            .map(String);                 
-    }, [typeOfMedals.medals]);
 
     const filteredMedals = typeOfMedals.medals[year || ''] || [];
 
@@ -45,9 +37,7 @@ function YearsMedalsPage() {
             </h2>
 
             <div className='containerMarginTable'>
-                {sortedYears.map(
-                   <MedalsTable />
-                )}
+                <MedalsTable filtered={filteredMedals} />
             </div>
         </>
     );

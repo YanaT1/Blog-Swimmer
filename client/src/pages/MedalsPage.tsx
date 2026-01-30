@@ -1,6 +1,7 @@
 import {
   useContext,
-  useEffect} from 'react';
+  useEffect,
+  useMemo} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {observer} from 'mobx-react-lite';
 import {Context} from '../store/store';
@@ -28,6 +29,13 @@ const MedalsPage = observer(() => {
         return <Loader />;
     }
 
+    const sortedYears = useMemo(() => {
+        return Object.keys(typeOfMedals.medals)
+            .map(Number)                 
+            .sort((a, b) => b - a)       
+            .map(String);                 
+    }, [typeOfMedals.medals]);
+
     const years = typeOfMedals.availableYears;
 
   
@@ -36,7 +44,7 @@ const MedalsPage = observer(() => {
         <h2 className='title'>Medals</h2>
         <Container fluid>
         <Row className='containerMargin'>
-          {years.map((year) => (
+          {sortedYears.map((year) => (
             <Col key={year} xs={6} md={4} lg={4}   
               className='d-flex justify-content-center mb-4'
             >
