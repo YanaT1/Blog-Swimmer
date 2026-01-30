@@ -42,9 +42,9 @@ const MedalsTable: FC<Props> = observer(({ filtered }) => {
     const sortedFiltered = useMemo (() => {
         if (!filtered) return [];
         return [...filtered].sort((a, b) => {
-            const dateA = new Date(a.medal_date);
-            const dateB = new Date(b.medal_date);
-            return dateB.getTime() - dateA.getTime(); 
+            const dateA = new Date(a.medal_date).getTime();
+            const dateB = new Date(b.medal_date).getTime();
+            return dateA - dateB;
         });
     }, [filtered]);
 
@@ -107,7 +107,7 @@ const MedalsTable: FC<Props> = observer(({ filtered }) => {
             {neighborYears.length > 0 && (
                 <Row>
                     {neighborYears.map((nextYear: string) => (
-                        <Col key={nextYear} xs={12} md={6} lg={6} className='styleCol'>
+                        <Col key={nextYear} xs={6} md={6} lg={6} className='styleCol'>
                             <Button type='button'
                                 variant='outline-primary'
                                 className='d-flex justify-content-center mb-4'

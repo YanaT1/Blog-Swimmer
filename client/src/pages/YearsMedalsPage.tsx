@@ -18,6 +18,13 @@ function YearsMedalsPage() {
         typeOfMedals.fetchMedals();
     }, [typeOfMedals, year]);
 
+    const sortedYears = useMemo(() => {
+        return Object.keys(typeOfMedals.medals)
+            .map(Number)                 
+            .sort((a, b) => b - a)       
+            .map(String);                 
+    }, [typeOfMedals.medals]);
+
     const filteredMedals = typeOfMedals.medals[year || ''] || [];
 
     if (typeOfMedals.isLoading) {
@@ -37,7 +44,9 @@ function YearsMedalsPage() {
             </h2>
 
             <div className='containerMarginTable'>
-               <MedalsTable filtered={filteredMedals} />
+                {sortedYears.map(
+                   <MedalsTable />
+                )}
             </div>
         </>
     );
