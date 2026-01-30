@@ -43,7 +43,7 @@ export default class TypeOfMedalsInfo implements ITypeOfMedalsStoreFull {
             const data = await MedalsService.loadAll();
             const grouped: Record<string, ITypeOfMedalsStore[]> = {};
 
-            data.allMedals((medal) => {
+            data.forEach((medal) => {
                 const year = new Date(medal.medal_date).getFullYear().toString();
                 if (!grouped[year]) grouped[year] = [];
                 grouped[year].push(medal);
