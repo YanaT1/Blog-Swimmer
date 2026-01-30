@@ -18,9 +18,7 @@ function YearsMedalsPage() {
         typeOfMedals.fetchMedals();
     }, [typeOfMedals, year]);
 
-    const filteredMedals = typeOfMedals.medals.filter(medal => {
-        return medal.medal_date.startsWith(year || '');
-    });
+    const filteredMedals = typeOfMedals.medals[year || ''] || [];
 
     if (typeOfMedals.isLoading) {
         return <Loader />;

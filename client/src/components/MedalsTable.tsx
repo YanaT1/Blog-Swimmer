@@ -49,15 +49,15 @@ const MedalsTable: FC<Props> = observer(({ filtered }) => {
     }, [filtered]);
 
     const neighborYears = useMemo(() => {
-    const currentYear = parseInt(year || '0', 10);
-    const years = typeOfMedals?.availableYears || [];
-    return years
-    .map(Number)
-    .filter((y) => y !== currentYear)
-    .sort((a, b) => Math.abs(currentYear - a) - Math.abs(currentYear - b))
-    .slice(0, 2)
-    .sort((a, b) => a - b)
-    .map(String);
+        const currentYear = parseInt(year || '0', 10);
+        const years = typeOfMedals.availableYears;
+        return years
+        .map(Number)
+        .filter((y) => y !== currentYear)
+        .sort((a, b) => Math.abs(currentYear - a) - Math.abs(currentYear - b))
+        .slice(0, 2)
+        .sort((a, b) => a - b)
+        .map(String);
   }, [typeOfMedals.availableYears, year]);
 
 
