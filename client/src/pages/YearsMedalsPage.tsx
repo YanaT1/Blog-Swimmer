@@ -12,11 +12,11 @@ import './stylePage.css';
 
 function YearsMedalsPage() {
     const {typeOfMedals} = useContext(Context);
-    const {year} = useParams<{ year: string }>();
+    const {year} = useParams<{year: string}>();
 
     useEffect(() => {
         typeOfMedals.fetchMedals();
-    }, [typeOfMedals]);
+    }, [typeOfMedals, year]);
 
     const filteredMedals = typeOfMedals.medals.filter(medal => {
         return medal.medal_date.startsWith(year || '');
