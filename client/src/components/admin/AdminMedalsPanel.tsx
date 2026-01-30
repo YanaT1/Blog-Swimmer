@@ -48,29 +48,21 @@ const AdminMedalsPanel = observer(() => {
     };
 
     const handleClose = async () => {
-        await typeOfMedals.fetchMedals();
         setEditMedal(null);
         setShowModal(false);
     };
 
   
     const years = useMemo(() => {
-        const uniqueYears = new Set<string>();
-        typeOfMedals.allMedals.forEach(medal => {
-            if (medal.medal_date) {
-                const year = medal.medal_date.slice(0, 4);
-                uniqueYears.add(year);
-            }
-        });
-        return Array.from(uniqueYears).sort((a, b) => Number(b) - Number(a)); 
-    }, [typeOfMedals.medals]);
+        return [...typeOfMedals.availableYears].sort((a, b) => Number(b) - Number(a));
+    }, [typeOfMedals.availableYears]);
 
     const filteredMedals = useMemo(() => {
         if (selectedYear === 'all') {
-            return typeOfMedals.medals;
+            return typeOfMedals.allMedals;
         }
-        return typeOfMedals.medals.filter(medal => medal.medal_date.startsWith(selectedYear));
-    }, [selectedYear, typeOfMedals.medals]);
+        return typeOfMedals.medals[selectedYear] || []; 
+    }, [selectedYear, typeOfMedals.medals, typeOfMedals.allMedals]);
 
     const startIndex = (currentPage - 1) * itemsPerPage;
     const paginatedMedals = filteredMedals.slice(startIndex, startIndex + itemsPerPage);
