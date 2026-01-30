@@ -1,4 +1,11 @@
-import {useNavigate} from 'react-router-dom';
+import {
+  useNavigate,
+  useParams} from 'react-router-dom';
+import {
+  useContext,
+  useMemo} from 'react';
+import {observer} from 'mobx-react-lite';
+import {Context} from '../../store/store';
 import {
     Button, 
     Container, 
@@ -9,25 +16,52 @@ import './stylePage.css';
 
 
 
-function MedalsPage() {
+const MedalsPage = observer(() => {
     const navigate = useNavigate();
+    const {year} = useParams<{year: string}>();
+    const {typeOfMedals} = useContext(Context);
+    const yearData = typeOfMedals.getResultsByYear(year ?? '');
 
-    const currentYear = new Date().getFullYear();
-    const startYear = 2024;
-    const endYear = currentYear; 
-
-    const years = [];
-    for (let y = startYear; y <= endYear; y++) {
-        years.push(y);
+    if (typeOfMedals.isLoading) {
+        return <Loader />;
     }
-    years.sort((a, b) => b - a); 
+
+    if (!yearData || yearData.length === 0) {
+        return (
+            <h2
+              className="text-center"
+              style={{margin: '5% 0 3%', color: 'rgb(3, 51, 109, 0.6)'}}
+            >
+            No medals for {year}
+            </h2>
+        );
+    }
+
+    const sortedYearData = useMemo (() => {
+        if (!yearData) return []; 
+        return [...yearData].sort((a, b) => {
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          return dateB.getTime() - dateA.getTime(); 
+        });
+    }, [yearData]);
+
+    // const currentYear = new Date().getFullYear();
+    // const startYear = 2024;
+    // const endYear = currentYear; 
+
+    // const years = [];
+    // for (let y = startYear; y <= endYear; y++) {
+    //     years.push(y);
+    // }
+    // years.sort((a, b) => b - a); 
 
     return (
     <>
         <h2 className='title'>Medals</h2>
         <Container fluid>
         <Row className='containerMargin'>
-          {years.map((year) => (
+          {sortedYearData.map((year) => (
             <Col key={year} xs={6} md={4} lg={4}   
               className='d-flex justify-content-center mb-4'
             >
@@ -48,6 +82,6 @@ function MedalsPage() {
         </div>
     </>
   );
-}
+});
 
 export default MedalsPage;
