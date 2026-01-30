@@ -48,7 +48,7 @@ const Cookie = () => {
                 backdropFilter: 'blur(10px)', // Размытие фона (стекло)
                 borderRadius: '20px',
                 padding: '20px',
-                border: '1px solid rgba(65, 201, 226, 0.4)',
+                border: '1.5px solid rgba(65, 201, 226, 0.4)',
                 boxShadow: '0 15px 35px rgba(3, 52, 110, 0.3)',
                 color: 'white',
             }}>
