@@ -56,7 +56,7 @@ const AdminMedalsPanel = observer(() => {
   
     const years = useMemo(() => {
         const uniqueYears = new Set<string>();
-        typeOfMedals.medals.forEach(medal => {
+        typeOfMedals.allMedals.forEach(medal => {
             if (medal.medal_date) {
                 const year = medal.medal_date.slice(0, 4);
                 uniqueYears.add(year);
