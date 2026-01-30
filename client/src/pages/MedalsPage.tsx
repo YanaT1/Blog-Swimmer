@@ -30,10 +30,8 @@ const MedalsPage = observer(() => {
     }
 
     const sortedYears = useMemo(() => {
-        const keys = Object.keys(typeOfMedals.medals || {});
-        if (keys.length === 0 && typeOfMedals.availableYears) {
-            return [...typeOfMedals.availableYears].sort((a, b) => Number(b) - Number(a));
-        }
+        const medalsData = typeOfMedals.medals; 
+        const keys = Object.keys(medalsData);
         return keys
             .map(Number)                 
             .sort((a, b) => b - a)       
