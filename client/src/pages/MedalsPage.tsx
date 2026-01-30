@@ -5,7 +5,7 @@ import {
   useContext,
   useMemo} from 'react';
 import {observer} from 'mobx-react-lite';
-import {Context} from '../../store/store';
+import {Context} from '../store/store';
 import {
     Button, 
     Container, 
