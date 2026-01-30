@@ -2,7 +2,9 @@ import {
     FC,
     useMemo,
     useContext} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {
+    useParams,
+    useNavigate} from 'react-router-dom';
 import {observer} from 'mobx-react-lite';
 import {Context} from '../store/store';
 import {
