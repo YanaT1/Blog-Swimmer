@@ -23,12 +23,13 @@ function YearsMedalsPage() {
     if (typeOfMedals.isLoading) {
         return <Loader />;
     }
-    if (!filteredMedals.length) 
+    if (!filteredMedals.length) {
         return ( 
             <h2 className='text-center mt-5' style={{ color:'rgba(3, 51, 109, 0.6)'}}>
             No medals found for year {year}.
             </h2>;
         );
+    }
 
     return (
         <>
