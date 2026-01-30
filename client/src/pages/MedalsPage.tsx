@@ -36,8 +36,6 @@ const MedalsPage = observer(() => {
             .map(String);                 
     }, [typeOfMedals.medals]);
 
-    const years = typeOfMedals.availableYears;
-
   
     return (
     <>
