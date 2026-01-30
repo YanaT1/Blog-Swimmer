@@ -58,7 +58,7 @@ const Cookie = () => {
                     style={{
                         backgroundColor: 'rgb(65, 201, 226)', 
                         border: 'none',
-                        borderRadius: '10px',
+                        borderRadius: '15px',
                         padding: '6px 20px',
                         fontWeight: '600',
                         color: 'rgb(3, 52, 110)',
