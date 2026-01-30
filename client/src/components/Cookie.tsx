@@ -30,13 +30,18 @@ const Cookie = () => {
 
     return (
         <div style={{
-            position: 'fixed',
-            bottom: '30px',
-            right: isVisible ? '30px' : '-400px', // Выезжает сбоку, не перекрывая центр
-            zIndex: 10000,
-            maxWidth: '320px',
-            opacity: isVisible ? 1 : 0,
-            transition: 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)', // Плавный 'отскок'
+          position: 'fixed',
+          bottom: '30px',
+          right: '30px', // Всегда справа
+          zIndex: 10000,
+          maxWidth: '320px',
+        
+          opacity: isVisible ? 1 : 0, 
+          transform: isVisible ? 'translateY(0)' : 'translateY(40px)', 
+          filter: isVisible ? 'blur(0px)' : 'blur(4px)', 
+        
+          transition: 'opacity 1.5s ease, transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), filter 1.2s ease',
+          pointerEvents: isVisible ? 'all' : 'none',
         }}>
             <div style={{
                 background: 'linear-gradient(135deg, rgba(0, 102, 205, 0.7) 0%, rgba(3, 52, 110, 0.85) 100%)',
