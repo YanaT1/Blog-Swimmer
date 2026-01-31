@@ -57,28 +57,34 @@ export function getBestByMonth(
 }
 
 
-export function getBestPtsByStyleAndYear(
+export function getBestByMonth(
   records: IGraphRecord[],
   style: string,
   year: number
-): { pts: number | null; time: string | null } {
-  const filtered = records.filter(
-    (r) => r.style === style && r.year === year && r.pts != null
-  );
+): (number | null)[] {
+  const monthlyBest: (number | null)[] = Array(12).fill(null);
 
-  if (filtered.length === 0) return { pts: null, time: null };
+  records
+    .filter((r) => r.style === style && r.year === year)
+    .forEach((r) => {
+      const current = monthlyBest[r.month];
+      if (current === null || r.value < current) {
+        monthlyBest[r.month] = r.value;
+      }
+    });
 
-  const best = filtered.reduce((bestRecord, current) => {
-    if (!bestRecord || (current.pts! > bestRecord.pts!)) {
-      return current;
+  let lastValidValue: number | null = null;
+
+  const continuousData = monthlyBest.map((val) => {
+    if (val !== null) {
+      lastValidValue = val;
+      return +val.toFixed(2);
     }
-    return bestRecord;
-  }, null as IGraphRecord | null);
+    
+    return lastValidValue !== null ? +lastValidValue.toFixed(2) : null;
+  });
 
-  return {
-    pts: best?.pts ?? null,
-    time: best ? formatSecondsToTime(best.value) : null,
-  };
+  return continuousData;
 }
 
 
