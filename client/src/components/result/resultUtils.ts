@@ -53,26 +53,6 @@ export function getBestByMonth(
       }
     });
 
-  return monthlyBest.map((val) => (val !== null ? +val.toFixed(2) : null));
-}
-
-
-export function getBestByMonth(
-  records: IGraphRecord[],
-  style: string,
-  year: number
-): (number | null)[] {
-  const monthlyBest: (number | null)[] = Array(12).fill(null);
-
-  records
-    .filter((r) => r.style === style && r.year === year)
-    .forEach((r) => {
-      const current = monthlyBest[r.month];
-      if (current === null || r.value < current) {
-        monthlyBest[r.month] = r.value;
-      }
-    });
-
   let lastValidValue: number | null = null;
 
   const continuousData = monthlyBest.map((val) => {
