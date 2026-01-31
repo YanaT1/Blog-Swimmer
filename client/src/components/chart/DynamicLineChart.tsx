@@ -45,6 +45,7 @@ const DynamicLineChart: FC<Props> = ({ label, dataByYear, colors = defaultColors
                 borderColor: color,
                 borderWidth: 2,
                 fill: true,
+                spanGaps: true,
             };
         });
 
