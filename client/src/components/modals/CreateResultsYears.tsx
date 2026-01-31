@@ -189,8 +189,8 @@ const CreateResultsYears: FC<CreateResultsYearsProps> = ({editResult, ...props})
                         </Dropdown.Menu>
                     </Dropdown>
 
-                    <Form.Control type='number'
-                        placeholder='Wpisz wynik (przykład: 36.36)'
+                    <Form.Control type='text'
+                        placeholder='Wpisz wynik (przykład: 1:36.36)'
                         className='formStyle'
                         value={result}
                         onChange={(e) => setResult(e.target.value)}

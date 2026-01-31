@@ -199,7 +199,7 @@ const CreateMedals: FC<CreateMedalsProps> = ({ editMedal, ...props }) => {
                     </Dropdown>
 
                     <Form.Control type='text'
-                       placeholder='Wpisz wynik (przykład: 36.36)'
+                       placeholder='Wpisz wynik (przykład: 1:36.36)'
                        className='formStyle'
                        value={result}
                        onChange={(e) => setResult(e.target.value)}

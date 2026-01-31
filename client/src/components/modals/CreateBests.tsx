@@ -163,7 +163,7 @@ const CreateBests: FC<CreateBestsProps> = ({editBest, ...props}) => {
                         />
           
                         <Form.Control type='text' 
-                              placeholder='Wpisz wynik (np. 36.36 lub 00:36.36)'
+                              placeholder='Wpisz wynik (np. 36.36 lub 1:36.36)'
                               className='formStyle mt-3'
                               value={result}
                               onChange={(e) => setResult(e.target.value)}
