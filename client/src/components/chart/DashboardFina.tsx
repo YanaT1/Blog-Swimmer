@@ -29,6 +29,33 @@ const defaultColors = [
     'rgba(5, 59, 255, 0.5)',
 ];
 
+const styleShortcuts: Record<string, string> = {
+    '50m Butterfly': '50m Fly',
+    '100m Butterfly': '100m Fly',
+    '200m Butterfly': '200m Fly',
+    '50m Freestyle': '50m Free',
+    '100m Freestyle': '100m Free',
+    '200m Freestyle': '200m Free',
+    '400m Freestyle': '400m Free',
+    '1500m Freestyle': '1500m Free',
+    '50m Backstroke': '50m Back',
+    '100m Backstroke': '100m Back',
+    '200m Backstroke': '200m Back',
+    '50m Breaststroke': '50m Breast',
+    '100m Breaststroke': '100m Breast',
+    '200m Breaststroke': '200m Breast',
+    '100m Medley': '100m Med',
+    '200m Medley': '200m Med'
+};
+
+const formatStyleName = (fullStyle: string) => {
+    let name = fullStyle;
+    Object.entries(styleShortcuts).forEach(([full, short]) => {
+        name = name.replace(full, short);
+    });
+    return name;
+};
+
 const options: ChartOptions<'bar'> = {
     responsive: true,
     plugins: {
@@ -88,6 +115,12 @@ const DashboardFina: FC = () => {
         ])
     ).filter((year): year is number => typeof year === 'number');
 
+    const graphData = mapResultsToGraphRecords(rawResults
+    ) .filter(r => (r as any).pool_m_type !== 50);
+
+    const styles = Array.from(new Set(graphData.map((r) => r.style))).sort();
+    const shortStyles = styles.map(s => formatStyleName(s));
+
     const dataByYear: Record<number, { pts: (number | null)[]; times: (string | null)[] }> = {};
 
     filteredYears.forEach((year) => {
@@ -107,13 +140,15 @@ const DashboardFina: FC = () => {
     }));
 
     const data: ChartData<'bar', number[]> = {
-        labels: styles,
+        labels: shortStyles,
         datasets,
     };
     
 
     return (
-        <Bar options={options} data={data} />
+        <div style={{ minHeight: '300px', width: '100%' }}>
+            <Bar options={options} data={data} />
+        </div>
     );
 };
 
