@@ -13,6 +13,7 @@ import {
 } from 'chart.js';
 import {Line} from 'react-chartjs-2';
 import {FC} from 'react';
+import {formatSecondsToTime} from '../../components/result/resultUtils';
 import '../../css/charts.css';
 
 
@@ -58,14 +59,22 @@ const DynamicLineChart: FC<Props> = ({ label, dataByYear, colors = defaultColors
                 callbacks: {
                     label: (context) => {
                         const val = context.parsed.y;
-                        return `Time: ${val.toFixed(2)}s`;
+                        if (val !== null) {
+                            return `Time: ${formatSecondsToTime(val)}`;
+                        }
+                        return 'No data';
                     },
         },},},
         scales: {
             y: {
                 reverse: true,
                 beginAtZero: false,
-                title: {display: true, text: 'Time (s)'},
+                title: {display: true, text: 'Time (MM:SS.ms)'},
+                ticks: {
+                callback: function(value) {
+                    return formatSecondsToTime(value as number);
+                }
+            }
         },},};
 
         const data: ChartData<'line'> = {

@@ -17,6 +17,7 @@ import {
     ChartOptions,
     ChartData} from 'chart.js';
 import {Bar} from 'react-chartjs-2';
+import {formatSecondsToTime} from '../../components/result/resultUtils';
 
 
 
@@ -48,14 +49,6 @@ const options: ChartOptions<'bar'> = {
     },},
 };
 
-function formatSecondsToTime(seconds: number): string {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    if (mins > 0) {
-        return `${mins}:${secs.toFixed(2).padStart(5, '0')}`;
-    }
-    return secs.toFixed(2);
-}
 
 function getBestPtsByStyleAndYear(
     records: IGraphRecord[],
@@ -90,7 +83,6 @@ const DashboardFina: FC = () => {
     const allYears = Array.from(new Set(graphData.map((r) => r.year))).sort((a, b) => a - b);
     const filteredYears = Array.from(
         new Set([
-            allYears[0],
             allYears[allYears.length - 2],
             allYears[allYears.length - 1],
         ])
