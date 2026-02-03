@@ -10,7 +10,9 @@ function ChartsPage() {
             <div className='titleChart'></div>
             <div className='containerMargin mb=5'>
                 <DashboardFina />
-                <Dashboard />
+                <div className='mobileStyle'>
+                    <Dashboard />
+                </div>
             </div>
         </>
     )
