@@ -107,7 +107,6 @@ const DashboardFina: FC = () => {
 
     const graphData = mapResultsToGraphRecords(rawResults
     ) .filter(r => (r as any).pool_m_type !== 50);
-    const styles = Array.from(new Set(graphData.map((r) => r.style))).sort();
     const allYears = Array.from(new Set(graphData.map((r) => r.year))).sort((a, b) => a - b);
     const filteredYears = Array.from(
         new Set([
