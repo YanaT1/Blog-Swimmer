@@ -143,7 +143,7 @@ const DashboardFina: FC = () => {
     
 
     return (
-        <div className='mb-3' style={{ minHeight: '300px', width: '100%' }}>
+        <div className='mb-3 mb-md-0' style={{ minHeight: '300px', width: '100%' }}>
             <Bar options={options} data={data} />
         </div>
     );
