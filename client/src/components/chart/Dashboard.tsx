@@ -57,11 +57,13 @@ const Dashboard: FC = () => {
         });
 
         return (
-          <DynamicLineChart
-            key={style}
-            label={style}
-            dataByYear={dataByYear}
-          />
+          <div style={{ minHeight: '300px', width: '100%' }}>
+              <DynamicLineChart
+                   key={style}
+                   label={style}
+                   dataByYear={dataByYear}
+              />
+          </div>
         );
       })}
     </div>
