@@ -105,7 +105,8 @@ const DashboardFina: FC = () => {
         resultsAPI.fetchAll().then(setRawResults);
     }, []);
 
-    const graphData = mapResultsToGraphRecords(rawResults);
+    const graphData = mapResultsToGraphRecords(rawResults
+    ) .filter(r => (r as any).pool_m_type !== 50);
     const styles = Array.from(new Set(graphData.map((r) => r.style))).sort();
     const allYears = Array.from(new Set(graphData.map((r) => r.year))).sort((a, b) => a - b);
     const filteredYears = Array.from(
@@ -114,9 +115,6 @@ const DashboardFina: FC = () => {
             allYears[allYears.length - 1],
         ])
     ).filter((year): year is number => typeof year === 'number');
-
-    const graphData = mapResultsToGraphRecords(rawResults
-    ) .filter(r => (r as any).pool_m_type !== 50);
 
     const styles = Array.from(new Set(graphData.map((r) => r.style))).sort();
     const shortStyles = styles.map(s => formatStyleName(s));
