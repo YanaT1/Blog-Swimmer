@@ -44,9 +44,17 @@ const Dashboard: FC = () => {
     <div>
       {styles.map((style) => {
         const dataByYear: Record<number, (number | null)[]> = {};
+        let globalLastValue: number | null = null;
 
-        filteredYears.forEach((year) => {
-          dataByYear[year] = getBestByMonth(graphData, style, year);
+        allYears.forEach((year) => {
+            const yearResults = getBestByMonth(graphData, style, year, globalLastValue);
+            const lastMonthValue = yearResults[11];
+            if (lastMonthValue !== null) {
+                globalLastValue = lastMonthValue;
+            }
+            if (filteredYears.includes(year)) {
+                dataByYear[year] = yearResults;
+            }
         });
 
         return (

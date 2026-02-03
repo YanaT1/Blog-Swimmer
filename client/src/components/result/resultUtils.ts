@@ -41,6 +41,7 @@ export function getBestByMonth(
   records: IGraphRecord[],
   style: string,
   year: number
+  initialValue: number | null = null
 ): (number | null)[] {
   const monthlyBest: (number | null)[] = Array(12).fill(null);
 
@@ -53,7 +54,7 @@ export function getBestByMonth(
       }
     });
 
-  let lastValidValue: number | null = null;
+  let lastValidValue = initialValue;
 
   const continuousData = monthlyBest.map((val) => {
     if (val !== null) {
@@ -66,13 +67,3 @@ export function getBestByMonth(
 
   return continuousData;
 }
-
-
-// function formatSecondsToTime(seconds: number): string {
-//   const mins = Math.floor(seconds / 60);
-//   const secs = seconds % 60;
-//   if (mins > 0) {
-//     return `${mins}:${secs.toFixed(2).padStart(5, '0')}`;
-//   }
-//   return secs.toFixed(2);
-// }
