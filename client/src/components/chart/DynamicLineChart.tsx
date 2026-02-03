@@ -83,7 +83,7 @@ const DynamicLineChart: FC<Props> = ({ label, dataByYear, colors = defaultColors
         };
 
     return (
-        <div className='mb-5 chart-wraper'>
+        <div className='mb-3 chart-wraper'>
             <Line options={options} data={data} />
         </div>
     )
