@@ -40,7 +40,7 @@ export function mapResultsToGraphRecords(results: IYearsResultsStore[]): IGraphR
 export function getBestByMonth(
   records: IGraphRecord[],
   style: string,
-  year: number
+  year: number,
   initialValue: number | null = null
 ): (number | null)[] {
   const monthlyBest: (number | null)[] = Array(12).fill(null);
