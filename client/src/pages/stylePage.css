@@ -19,14 +19,11 @@
         margin-top: 15%;
     }
     .titleChart {
-        margin-top: 20%;
+        margin-top: 10%;
     }
 
     .containerMargin {
-        margin-top: 7%;
-        margin-bottom: 0;
-        margin-left: 4%;
-        margin-right: 4%;
+        margin: 7% 4%;
     }
     .containerMarginTable {
         margin: 8% 0.5%;
