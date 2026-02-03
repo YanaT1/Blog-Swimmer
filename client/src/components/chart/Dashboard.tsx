@@ -14,7 +14,7 @@ const styles = [
   '50m Freestyle',
   '100m Freestyle',
   '200m Freestyle',
-  '400m Fressstyle',
+  '400m Freestyle',
   '50m Backstroke',
   '50m Breaststroke',
   '100m Medley',
