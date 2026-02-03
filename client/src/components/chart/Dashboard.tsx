@@ -33,8 +33,7 @@ const Dashboard: FC = () => {
   const allYears = Array.from(new Set(graphData.map((r) => r.year))).sort((a, b) => a - b);
 
   const filteredYears = Array.from(
-    new Set([
-      allYears[0],                              
+    new Set([                             
       allYears[allYears.length - 2],              
       allYears[allYears.length - 1],              
     ])
