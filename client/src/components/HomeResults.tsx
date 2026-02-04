@@ -5,7 +5,8 @@ import {
     Container} from 'react-bootstrap';
 import {
     useContext, 
-    useRef} from 'react';
+    useRef,
+    useMemo} from 'react';
 import {observer} from 'mobx-react-lite';
 import {Context} from '../store/store';
 
@@ -24,31 +25,33 @@ const HomeResults = observer((): JSX.Element => {
     const {years_results} = useContext(Context);
     const containerRef = useRef<HTMLDivElement | null>(null);
 
-    const sortedYears = [...(years_results?.availableYears || [])].sort((a, b) => Number(b) - Number(a));
-    const lastTwoYears = sortedYears.slice(0, 2);
+    const lastTwoYears = useMemo(() => {
+        const years = years_results?.availableYears ? [...years_results.availableYears] : [];
+        return years.sort((a, b) => Number(b) - Number(a)).slice(0, 2);
+    }, [years_results?.availableYears]);
 
     useGSAP(() => {
-        if (!containerRef.current) return;
+        if (!containerRef.current || lastTwoYears.length === 0) return;
 
         const cards = containerRef.current.querySelectorAll('.styleCards');
 
-        cards.forEach((card, index) => {
-            gsap.from(card, {
+            gsap.from(cards, {
                 scrollTrigger: {
-                    trigger: card,
-                    start: 'top 40%',
+                    trigger: containerRef.current,
+                    start: 'top 80%',
                     toggleActions: 'play none none none',
                 },
                 y: 50,
                 autoAlpha: 0, 
                 duration: 0.8,
                 ease: 'power2.out',
-                delay: index * 0.2, 
+                stagger: 0.2,
+                clearProps: 'all', 
             });
-        });
+        }, { scope: containerRef, dependencies: [lastTwoYears] });
 
-        ScrollTrigger.refresh();
-    }, [lastTwoYears.length]);
+        if (lastTwoYears.length === 0) return <></>;
+
 
     return (
       <Container fluid className='homeResultsContainer' ref={containerRef}>
