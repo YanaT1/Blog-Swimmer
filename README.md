@@ -1,52 +1,45 @@
 # **Swimmer Blog**
 
-A full-featured web application for swimmer, designed to keep track of his competition results and swimming progress.
-A swimmer can add race results, personal bests, medals, and yearly statistics through an admin panel.
-Users can explore results and medals tables, personal bests, and dynamic performance charts.
+A full-featured web application designed for athletes to track competition results and swimming progress. The system provides a secure environment for data management and a dynamic public interface for performance analysis.
 ___
 
 ## **Features**
 
-### **Admin Panel:**
-+ Add competition results
-+ Add personal bests
-+ Add medals
-+ Edit and delete entries
+### **Admin Panel (Secure Management):** 
++ **Full CRUD operations** for race results, personal bests, and medals.
++ **Secure Authentication:** Implementation of JWT-based access and refresh token logic.
++ **Data Integrity:** Server-side input validation and error handling.
 
-### **Public Section:**
-+ Complete results table
-+ Personal bests overview
-+ Medals by year and swimming style
-+ Automatic dynamic charts showing performance improvements
-+ Contact form (with SMTP delivery via Brevo)
+### **Public Section (Data Visualization):**
++ **Dynamic Performance Charts:** Interactive progress tracking using Chart.js.
++ **Advanced UI Animations:** Smooth transitions and interactive elements powered by GSAP.
++ Complete results table and personal bests overview.
++ Medals and results categorized by year.
++ **Robust Form Handling:** Contact form with validation and SMTP delivery via Brevo.
 
 
 ## **Technologies**
 
 ### **Frontend:**
-+ React.js
-+ TypeScript
-+ MobX (state management)
-+ Axios
-+ Bootstrap
-+ CSS
++ **React.js** 18 (TypeScript)
++ **MobX:** Global state management using the "Store" pattern.
++ **GSAP:** High-performance animations.
++ **React Hook Form:** Optimized form handling and validation.
++ **Axios:** For API communication with interceptors for token management.
++ **Bootstrap 5:** Responsive UI components.
 
 ### **Backend:**
-+ Node.js
-+ Express.js
-+ JavaScript
-+ JWT Authentication
-+ Nodemailer
-+ SMTP email delivery via Brevo (SendinBlue)
++ **Node.js & Express.js**
++ **JWT & Bcrypt:** Secure password hashing and token-based authorization.
++ **Express-validator:** Middleware for robust backend data validation.
++ **Nodemailer:** Integration with Brevo (SendinBlue) for email services.
 
 ### **Database:**
-+ PostgreSQL
-+ Sequelize ORM
++ **PostgreSQL:** Relational database management.
++ **Sequelize ORM:** Database modeling and migrations.
 
-### **Dev Tools:**
-+ Docker
-+ docker-compose
-+ GitHub
+### **Infrastructure:**
++ **Docker & Docker Compose:** Containerized environment for consistent development and deployment.
 
 
 ## **Project Structure**
@@ -112,9 +105,16 @@ CLIENT_URL = Frontend URL, e.g. https://mydomain.com
 git clone https://github.com/YanaT1/Blog-Swimmer.git
 
 
+
+## **Run with Docker (Recommended):**
+
+docker-compose up --build
+
+
+
 ## **Contact**
-This project was created for swimmer Ivan Tryputen.
 Developer: (Yana Tryputen, tryputenyana@gmail.com)
+Created for swimmer Ivan Tryputen, www.ivantryputen.com
 
 ## **License**
 MIT License
