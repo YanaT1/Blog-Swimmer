@@ -113,8 +113,8 @@ docker-compose up --build
 
 
 ## **Contact**
-Developer: (Yana Tryputen, tryputenyana@gmail.com)
-Created for swimmer Ivan Tryputen, www.ivantryputen.com
++ Developer: (Yana Tryputen, tryputenyana@gmail.com)
++ Created for swimmer Ivan Tryputen, www.ivantryputen.com
 
 ## **License**
 MIT License
